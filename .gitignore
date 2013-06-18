@@ -213,3 +213,7 @@ pip-log.txt
 
 #Mr Developer
 .mr.developer.cfg
+
+GkwCn.Web/Web.Release.config
+GkwCn.Web/Web.Debug.config
+GkwCn.Web/Web.config

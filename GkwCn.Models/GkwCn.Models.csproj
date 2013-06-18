@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\Business\CreateTradeCmd.cs" />
+    <Compile Include="Commands\Business\EditTradeCmd.cs" />
     <Compile Include="Commands\Common\BaseDomainCmd.cs" />
     <Compile Include="Commands\Common\BuildSitemapCmd.cs" />
     <Compile Include="Commands\Company\CreateCompanyCmd.cs" />
