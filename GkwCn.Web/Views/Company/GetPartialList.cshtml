@@ -1,0 +1,12 @@
+﻿@model CompanyListViewModel
+
+<ul class="unstyled thumbnails cul span6">
+    @foreach (var item in Model.ListValue)
+    {
+        <li>
+            <a href="~/company/details/@item.Id" target="_blank" class="thumbnail">
+                <img src="@item.LogoUrl" width="100" height="55" alt="@item.Name" />
+            </a>
+        </li>
+    }
+</ul>

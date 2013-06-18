@@ -1,0 +1,11 @@
+﻿@model CompanyType
+
+<select name="@Html.NameForModel()" id="@Html.IdForModel()">
+    <option value="0" @(Model == CompanyType.供应商 ? "selected=\"selected\"" : "")>供应商</option>
+    <option value="1" @(Model == CompanyType.系统集成商 ? "selected=\"selected\"" : "")>系统集成商</option>
+    <option value="2" @(Model == CompanyType.代理经销商 ? "selected=\"selected\"" : "")>代理经销商</option>
+    <option value="3" @(Model == CompanyType.维修企业 ? "selected=\"selected\"" : "")>维修企业</option>
+    <option value="4" @(Model == CompanyType.培训机构 ? "selected=\"selected\"" : "")>培训机构</option>
+    <option value="5" @(Model == CompanyType.科研院所 ? "selected=\"selected\"" : "")>科研院所</option>
+    <option value="6" @(Model == CompanyType.其它 ? "selected=\"selected\"" : "")>其它</option>
+</select>

@@ -1,0 +1,65 @@
+﻿@model object
+
+@{
+    
+    int val = -1;
+    if (Model != null)
+    {
+        if(Model is NewsType)
+        {
+            val = (int)((NewsType)Model);
+        }
+        else if(Int32.TryParse(Model.ToString(),out val))
+        {
+        }
+    }
+}
+
+@switch (val)
+{
+    case (int)NewsType.gongkong视点:
+    <span>gongkong视点</span>
+        break;
+    case (int)NewsType.板块动态:
+    <span>板块动态</span>
+        break;
+    case (int)NewsType.本站动态:
+    <span>本站动态</span>
+        break;
+    case (int)NewsType.参展预告:
+    <span>参展预告</span>
+        break;
+    case (int)NewsType.行业动态:
+    <span>行业动态</span>
+        break;
+    case (int)NewsType.宏观政策:
+    <span>宏观政策</span>
+        break;
+    case (int)NewsType.培训动态:
+    <span>培训动态</span>
+        break;
+    case (int)NewsType.企业公告:
+    <span>企业公告</span>
+        break;
+    case (int)NewsType.人物专访:
+    <span>人物专访</span>
+        break;
+    case (int)NewsType.商务新闻:
+    <span>商务新闻</span>
+        break;
+    case (int)NewsType.新品速递:
+    <span>新品速递</span>
+        break;
+    case (int)NewsType.业界动态:
+    <span>业界动态</span>
+        break;
+    case (int)NewsType.招标公告:
+    <span>招标公告</span>
+        break;
+    case (int)NewsType.专题报道:
+    <span>专题报道</span>
+        break;
+    case (int)NewsType.最新动态:
+    <span>最新动态</span>
+        break;
+}

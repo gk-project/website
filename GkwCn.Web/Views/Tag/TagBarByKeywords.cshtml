@@ -1,0 +1,11 @@
+﻿@model IEnumerable<string>
+
+<div>
+    <ul class="inline">
+        <li><label class="label">关键词：</label></li>
+        @foreach (var item in Model)
+        {
+            <li><a href="~/tag/index?keyword=@WebUtility.UrlEncode(item)" target="_blank">@item</a></li>
+        }
+    </ul>
+</div>

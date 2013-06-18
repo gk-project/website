@@ -1,0 +1,8 @@
+﻿@model NewsListViewModel
+
+<ul style="font-size:12px;">
+    @foreach (var item in Model.ListValue)
+    {
+        <li><a href="~/news/details/@item.Id" target="_blank">@item.Title.ASubString(25)</a></li>
+    }
+</ul>

@@ -1,0 +1,137 @@
+﻿@model GkwCn.Models.Commands.CreateCompanyCmd
+
+@{
+    ViewBag.Title = "新增企业厂商";
+}
+
+<div class="span10">
+    @using (Html.BeginForm("create", "company", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <fieldset>
+            <legend class="page-header">新增企业厂商</legend>
+            <br />
+            @Html.HiddenFor(model => model.RegUserId)
+            <div class="control-group">
+                @Html.LabelFor(model => model.Type, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Type)
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.Type)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Title, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.Title, new { @class = "input-xxlarge" })
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.Title)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.EnName, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.EnName)
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.EnName)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.ShortName, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.ShortName)
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.ShortName)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Logo, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Logo)
+                    <input type="button" class="btn" value="上传Logo"/>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Address, new { @class = "control-label" })
+                <div class="controls controls-row">
+                    @Html.EditorFor(model => model.Province,"Province")
+                    @Html.EditorFor(model => model.City,"City")                    
+                    @Html.TextBoxFor(model => model.Address, new { @class = "span3 address" })
+                    <p class="text-error">@Html.ValidationMessageFor(model => model.Address)</p>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.LinkMan, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.LinkMan)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Email)
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.Email)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Mobile, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Mobile)
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.Mobile)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Handset, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Handset)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Fax, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Fax)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Zip, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Zip)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.WorkProduct, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.WorkProduct, new { @class = "input-xxlarge" })
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Content, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Content, "ContentEditor")
+                    <p class="text-error uderror" data-title="@Html.DisplayNameFor(model => model.Content)">@Html.ValidationMessageFor(model => model.Content)</p>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Keyword, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.Keyword, new { @class = "input-xxlarge" })
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.Keyword)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Summary, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextAreaFor(model => model.Summary, new { @class = "input-xxlarge", rows = "5" })
+                    <p class="text-error">@Html.ValidationMessageFor(model => model.Summary)</p>
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label"></label>
+                <div class="controls">
+                    <input type="submit" value="新增企业厂商" class="btn btn-primary" />
+                </div>
+            </div>
+        </fieldset>
+    }
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Scripts/ueditor-valid.js"></script>
+    <script src="~/Scripts/provincecity-select.js"></script>
+}

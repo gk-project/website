@@ -1,0 +1,33 @@
+﻿@model string
+@{
+    ViewBag.Title = Model.ObjectToString();
+    ViewBag.Keywords = Model.ObjectToString();
+    ViewBag.Description = Model.ObjectToString();
+}
+<style type="text/css">
+    .thumbnails img {
+        width: 160px;
+        height: 60px;
+    }
+
+    .link {
+        color: #aeaeae;
+    }
+</style>
+<div class="span8">
+    <h3 class="page-header">关键词标签：@Model</h3>
+    @{Html.RenderAction("GetPartialListByKeyword", "Tag", new { keyword = Model, type = 0, size = 15 });}
+    @{Html.RenderAction("GetPartialListByKeyword", "Tag", new { keyword = Model, type = 1, size = 15 });}
+    @{Html.RenderAction("GetPartialListByKeyword", "Tag", new { keyword = Model, type = 2, size = 15 });}
+    @{Html.RenderAction("GetPartialListByKeyword", "Tag", new { keyword = Model, type = 3, size = 15 });}
+</div>
+<div class="span4">
+    <div class="span4">
+        <h5 class="page-header">热门品牌</h5>
+        @{Html.RenderAction("getpartiallist", "company", new { view = "HotCompanys", type = -1, size = 10 });}
+    </div>
+    <div class="span4">
+        <h5 class="page-header">热门产品</h5>
+        @{Html.RenderAction("getpartiallist", "product", new { view = "productsbyhit", type = -1, size = 12 });}
+    </div>
+</div>

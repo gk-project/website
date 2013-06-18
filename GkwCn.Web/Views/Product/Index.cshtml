@@ -1,0 +1,43 @@
+﻿@model ProductListViewModel
+
+@{
+    ViewBag.Title = "产品列表";
+    int i = 0;
+}
+
+<style type="text/css">
+    .cmp img {
+        height:40px;
+    }
+</style>
+
+<div class="span10">
+    <h3>产品列表</h3>
+    <div>
+        @foreach (var item in Model.ListValue)
+        {
+            if (i % 5 == 0)
+            {
+            @:<ul class="thumbnails">
+}
+        <li class="span2">
+            <a href="~/product/details/@item.Id" class="thumbnail" target="_blank">
+                <img src="@item.PictureUrl" alt="@item.Name" />
+                <h5>@item.Name</h5>
+            </a>
+        </li>
+            if (i % 5 == 4)
+            {
+        @:</ul>
+                            }
+            i++;
+        }
+    </div>
+</div>
+<div class="span2">
+    <h5 class="page-header">热门品牌</h5>
+    @{Html.RenderAction("getpartiallist", "company", new { view = "hotcompanys", size = 12 });}
+</div>
+<div class="pagination pagination-small pagination-centered">
+    @Html.Raw(Model.Page.PagerSplitString)
+</div>

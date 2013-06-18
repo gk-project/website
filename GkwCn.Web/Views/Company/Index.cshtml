@@ -1,0 +1,42 @@
+﻿@model CompanyListViewModel
+
+@{
+    ViewBag.Title = "企业专区";
+    var index = 0;
+}
+
+<style>
+    .thumbnails img {
+        width: 160px;
+        height: 60px;
+    }
+</style>
+<div class="span8">
+    @foreach (var item in Model.ListValue)
+    {
+        if (index % 4 == 0)
+        {
+        @:<ul class="thumbnails row text-center">
+        }
+        <li class="span2">
+            <a href="~/company/details/@item.Id" target="_blank" class="thumbnail">
+                <img alt="@item.Name" src="@item.LogoUrl" width="160" height="60" />
+            </a>
+            <h5>@item.Name</h5>
+        </li>
+            if (index % 4 == 3)
+        {
+        @:</ul>
+        }
+        index++;
+    }
+</div>
+<div class="span4">
+    <div class="span4">
+        <h5 class="page-header">热门产品</h5>
+        @{Html.RenderAction("getpartiallist", "product", new { view = "productsbyhit", type = -1, size = 4 });}
+    </div>
+</div>
+<div class="pagination pagination-small pagination-centered">
+    @Html.Raw(Model.Page.PagerSplitString)
+</div>

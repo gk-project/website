@@ -1,0 +1,19 @@
+﻿@model NewsType
+
+<select name="@Html.NameForModel()" id="@Html.IdForModel()">
+    <option value="0" @(Model == NewsType.行业动态 ? "selected=\"selected\"" : "")>行业动态</option>
+    <option value="1" @(Model == NewsType.本站动态 ? "selected=\"selected\"" : "")>本站动态</option>
+    <option value="2" @(Model == NewsType.专题报道 ? "selected=\"selected\"" : "")>专题报道</option>
+    <option value="3" @(Model == NewsType.业界动态 ? "selected=\"selected\"" : "")>业界动态</option>
+    <option value="4" @(Model == NewsType.人物专访 ? "selected=\"selected\"" : "")>人物专访</option>
+    <option value="5" @(Model == NewsType.新品速递 ? "selected=\"selected\"" : "")>新品速递</option>
+    <option value="6" @(Model == NewsType.商务新闻 ? "selected=\"selected\"" : "")>商务新闻</option>
+    <option value="7" @(Model == NewsType.参展预告 ? "selected=\"selected\"" : "")>参展预告</option>
+    <option value="8" @(Model == NewsType.企业公告 ? "selected=\"selected\"" : "")>企业公告</option>
+    <option value="9" @(Model == NewsType.gongkong视点 ? "selected=\"selected\"" : "")>gongkong视点</option>
+    <option value="10" @(Model == NewsType.培训动态 ? "selected=\"selected\"" : "")>培训动态</option>
+    <option value="11" @(Model == NewsType.最新动态 ? "selected=\"selected\"" : "")>最新动态</option>
+    <option value="12" @(Model == NewsType.招标公告 ? "selected=\"selected\"" : "")>招标公告</option>
+    <option value="13" @(Model == NewsType.宏观政策 ? "selected=\"selected\"" : "")>宏观政策</option>
+    <option value="14" @(Model == NewsType.板块动态 ? "selected=\"selected\"" : "")>板块动态</option>
+</select>

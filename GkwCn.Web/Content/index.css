@@ -1,0 +1,98 @@
+﻿a {
+    color: #6f6f6f;
+    font-size: 12px;
+}
+
+ul, ol {
+    margin-bottom: 0px;
+}
+
+.page-header {
+    margin-top:10px;
+    margin-bottom:5px;
+}
+
+.cmp .nav-tabs {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.cmp .tab-content {
+    border: 1px solid #DDD;
+    border-top: none;
+    overflow-x: hidden;
+}
+
+.cul {
+    margin: 5px 2px;
+}
+
+    .cul img {
+        width: 100px;
+        height: 50px;
+    }
+
+    .cul li {
+        margin: 2px;
+    }
+
+.news .nav-tabs {
+    padding-right: 0px;
+    margin-right: 0px;
+    height: 240px;
+    line-height: 240px;
+}
+
+.news .tab-content ul {
+    margin: 6px 5px 5px 5px;
+}
+
+.news .tab-content ul li {
+    margin: 2px;
+}
+
+.news .tab-content {
+    border: 1px solid #DDD;
+    border-left: none;
+    overflow-x: hidden;
+}
+
+.cooperates .nav-tabs {
+    padding-left: 0px;
+    margin-left: 0px;
+    height: 250px;
+    line-height: 250px;
+}
+
+.cooperates .tab-content ul {
+    margin: 4px 5px 3px 5px;
+}
+
+.cooperates .tab-content ul li {
+    margin: 2px;
+    font-size:12px;
+}
+
+.cooperates .tab-content{
+    border: 1px solid #DDD;
+    border-right: none;
+    overflow-x: hidden;
+}
+
+.hotcompany li{
+    margin-bottom:6px;
+}
+
+.hotcompany img {
+    width:120px;
+    height:70px;
+}
+
+.pros li {
+    margin: 2px 3px;
+}
+
+.pros img {
+    width: 140px;
+    height: 100px;
+}

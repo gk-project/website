@@ -1,0 +1,8 @@
+﻿@model GkwCn.Models.ViewModels.NewsListViewModel
+
+<ul class="unstyled">
+    @foreach (var item in Model.ListValue)
+    {
+        <li><a href="~/news/details/@item.Id" target="_blank">@item.Title.ASubString(35)</a><span class="label pull-right">@item.PublishTime.ToString("yyyy-MM-dd")</span></li>
+    }
+</ul>

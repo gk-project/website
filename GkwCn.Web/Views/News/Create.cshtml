@@ -1,0 +1,81 @@
+﻿@model GkwCn.Models.Commands.CreateNewsCmd
+
+@{
+    ViewBag.Title = "发布新闻";
+}
+
+<div class="span10">
+    @using (Html.BeginForm("create", "news", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <fieldset>
+            <legend class="page-header">发布新闻</legend>
+            <br />
+            @Html.HiddenFor(model => model.RegUserId)
+            <div class="control-group">
+                @Html.LabelFor(model => model.Type, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Type)
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.Type)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Title, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.Title, new { @class = "input-xxlarge" })
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.Title)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.SubHead, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.SubHead, new { @class = "input-xxlarge" })
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.SubHead)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Content, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Content, "ContentEditor")
+                    <p class="text-error uderror" data-title="@Html.DisplayNameFor(model=>model.Content)">@Html.ValidationMessageFor(model => model.Content)</p>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Keyword, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.Keyword, new { @class = "input-xxlarge" })
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.Keyword)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Summary, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextAreaFor(model => model.Summary, new { @class = "input-xxlarge", rows = "5" })
+                    <p class="text-error">@Html.ValidationMessageFor(model => model.Summary)</p>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.BrandId, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.BrandId)
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.CompanyId, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.CompanyId)
+                </div>
+            </div>
+            <div class="control-group">
+                <label class="control-label"></label>
+                <div class="controls">
+                    <input type="submit" value="发布新闻" class="btn btn-primary" />
+                </div>
+            </div>
+        </fieldset>
+    }
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Scripts/ueditor-valid.js"></script>
+}

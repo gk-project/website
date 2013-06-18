@@ -1,0 +1,64 @@
+﻿@model GkwCn.Domains.Company
+
+@{
+    ViewBag.Title = "企业 - " + Model.Name + " - " + Model.Keyword;
+    ViewBag.Keywords = Model.Keyword;
+    ViewBag.Description = Model.Description;
+}
+
+<style>
+    .news img {
+        width: 260px;
+        height: 130px;
+    }
+</style>
+
+<div class="span12">
+    <div class="hero-unit">
+        <img src="@Model.LogoUrl" alt="@Model.Name" />
+        <blockquote>
+            <h1>@Model.Name</h1>
+            <small class="text-right" style="font-size:28px;"> 中国工业控制网</small>
+        </blockquote>
+        @{Html.RenderAction("TagBarByKeywords", "Tag", new { keywords = Model.Keyword });}
+        <p>@Html.Raw(Model.Summary)</p>
+        <p class="hide">@Model.Name</p>
+    </div>
+</div>
+<div class="clearfix"></div>
+<div>
+    <div class="span9">
+        @if (!Model.Description.IsNull())
+        {
+            <div>
+                <h4 class="page-header">企业介绍</h4>
+                <p>
+                    @Html.Raw(Model.Description)
+                </p>
+            </div>
+        }
+        @{Html.RenderAction("getcompanynews", "news", new { companyid = Model.Id, size = 12 });}
+    </div>
+    <div class="span3">
+        <div>
+            <h4 class="page-header">联系我们</h4>
+            <div class="thumbnail">
+                <span>地址：@Model.Address</span><br>
+                <span>邮编：@Model.Zip</span><br>
+                <span>电话：@Model.Mobile</span><br>
+                <span>传真：@Model.Fax</span><br>
+                <span>Email：<a href="mailto:@Model.Email">@Model.Email</a></span><br>
+            </div>
+        </div>
+        @{Html.RenderAction("getproductbycid", "product", new { companyid = Model.Id, size = 10 });}
+    </div>
+</div>
+<div class="span12">免责声明：本站部分内容均来自互联网，如不慎侵害的您的相关权益，请留言告知，我们将尽快删除！</div>
+
+@section scripts{
+    <script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=1&amp;pos=right&amp;uid=6720770"></script>
+    <script type="text/javascript" id="bdshell_js"></script>
+    <script type="text/javascript">
+        document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date() / 3600000);
+    </script>
+}

@@ -1,0 +1,45 @@
+﻿@model NewsListViewModel
+
+@{
+    ViewBag.Title = (NewsType)Model.Type;
+}
+<style type="text/css">
+    .link {
+        color:#aeaeae;
+    }
+</style>
+<div class="span8">
+    <h3 class="page-header">@Html.DisplayFor(model => model.Type, "NewsType")</h3>
+    <div>
+        <ul>
+            @foreach (var item in Model.ListValue)
+            {
+                <li><a href="~/news/details/@item.Id" target="_blank">@item.Title</a> <span class="link"> - (@item.PublishTime.ToString("yyyy-MM-dd"))</span></li>
+            }
+        </ul>
+    </div>
+</div>
+<div class="span4">
+    <div class="span4">
+        <div class="pull-right">
+            <h5>热门关键词</h5>
+            <ul class="inline">
+                <li>新闻资讯</li>
+                <li>体育竞技</li>
+                <li>娱乐八卦</li>
+                <li>前沿科技</li>
+                <li>环球财经</li>
+                <li>天气预报</li>
+                <li>房产家居</li>
+                <li>网络游戏</li>
+            </ul>
+        </div>
+    </div>
+    <div class="span4">
+        <h5 class="page-header">热门产品</h5>
+        @{Html.RenderAction("getpartiallist", "product", new { view = "ProductsByHit", type = -1, size = 6 });}
+    </div>
+</div>
+<div class="pagination pagination-small pagination-centered">
+    @Html.Raw(Model.Page.PagerSplitString)
+</div>

@@ -1,0 +1,23 @@
+﻿@model IEnumerable<News>
+@{
+    int rows = 0;
+}
+
+@foreach (var item in Model)
+{
+    if (rows % 2 == 0)
+    {
+    @(Html.Raw("<div class=\"row\">"))
+    }
+    <div class="span4">
+        <h4><span class="label"><i class="icon-tag"></i>@Html.DisplayFor(model => item.NewsType)</span>@Html.ActionLink(item.Title, "details", new { id = item.Id }, new { target = "_blank" })</h4>
+        <p><span class="label label-info"><i class="icon-pencil"></i><small>作者：admin</small></span> <span class="label label-info"><i class="icon-calendar"></i><small>发表时间：@item.PublishTime</small></span></p>
+        <div>@(item.Summary.IsNullOrEmpty() ? item.Content.ASubString(150) : item.Summary)</div>
+        <p><a class="btn" href="/news/details/@item.Id" target="_blank">查看 »</a></p>
+    </div>
+    rows++;
+    if (rows % 2 == 0 && rows != 0)
+    {
+    @(Html.Raw("</div>"))
+    }
+}

@@ -1,0 +1,12 @@
+﻿@model ProductListViewModel
+
+<ul class="unstyled thumbnails cul span6">
+    @foreach (var item in Model.ListValue)
+    {
+        <li>
+            <a href="~/product/details/@item.Id" target="_blank" class="thumbnail">
+                <img src="@item.PictureUrl" width="100" height="55" alt="@item.Name" />
+            </a>
+        </li>
+    }
+</ul>

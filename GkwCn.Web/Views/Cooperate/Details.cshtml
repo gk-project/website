@@ -1,0 +1,70 @@
+﻿@model GkwCn.Domains.Business.Cooperate
+
+@{
+    ViewBag.Title = Model.Type + " - " + Model.Title + " - " + Model.Keyword;
+    ViewBag.Keywords = Model.Keyword;
+    ViewBag.Description = Model.Summary;
+}
+
+<style>
+    .news img {
+        width: 260px;
+        height: 130px;
+    }
+</style>
+
+<div class="span12">
+    <div class="hero-unit">
+        <h2>@Model.Title<span> - 中国工业控制网</span></h2>
+        <blockquote class="offset1 text-right">
+            <p>@Html.DisplayFor(model => model.SubHead)</p>
+            <small>关键词：<cite title="@Html.DisplayFor(model => model.Title)"> @Html.DisplayFor(model => model.Keyword)</cite></small>
+        </blockquote>
+        @{Html.RenderAction("TagBarByKeywords", "Tag", new { keywords = Model.Keyword });}
+        <p>
+            <label class="label">公司名称：</label>
+            @Model.CompanyName</p>
+        @if (!Model.AreaInsutry.IsNull())
+        {
+            <p>
+                <label class="label">合作区域：</label>
+                @Html.DisplayFor(model => model.AreaInsutry)</p>
+        }
+        <p><label class="label">描述：</label>@Html.DisplayFor(model => model.Summary)</p>
+    </div>
+</div>
+<div>
+    <div class="span9">
+        <h4 class="page-header">合作详情</h4>
+        <p class="hide">@Html.DisplayFor(model => model.Summary)</p>
+        <p class="offset1">@Html.Raw(Model.Content)</p>
+        <p class="hide">@Html.DisplayFor(model => model.Title)</p>
+        <small>免责声明：本站部分内容均来自互联网，如不慎侵害的您的相关权益，请留言告知，我们将尽快删除！</small>
+    </div>
+    @if (!Model.Company.IsNull())
+    {
+        <div class="span3">
+            <h4 class="page-header">联系我们</h4>
+            <div class="thumbnail">
+                <span>地址：@Model.Company.Address</span><br>
+                <span>邮编：@Model.Company.Zip</span><br>
+                <span>电话：@Model.Company.Mobile</span><br>
+                <span>传真：@Model.Company.Fax</span><br>
+                <span>Email：<a href="mailto:@Model.Company.Email">@(Model.Email ?? Model.Company.Email)</a></span><br>
+            </div>
+        </div>
+        <div class="span3">
+            <h4 class="page-header">企业新闻</h4>
+            @{Html.RenderAction("GetCompanyNews", "news", new { companyid = Model.CompanyId, size = 10, view = "companynewslist" });}
+        </div>
+        { Html.RenderAction("getproductbycid", "product", new { companyid = Model.CompanyId, size = 6 }); }
+    }
+</div>
+
+@section scripts{
+    <script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=1&amp;pos=right&amp;uid=6720770"></script>
+    <script type="text/javascript" id="bdshell_js"></script>
+    <script type="text/javascript">
+        document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date() / 3600000);
+    </script>
+}

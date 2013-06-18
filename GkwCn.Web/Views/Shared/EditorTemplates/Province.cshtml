@@ -1,0 +1,37 @@
+﻿@model string
+
+@{
+    var query = new GkwCn.QueryService.ProvinceCityQueryService();
+    var provinces = query.GetProvinces();
+}
+
+@*<input type="hidden" id="@Html.IdForModel()" name="@Html.NameForModel()" class="province">
+<select id="@(Html.IdForModel())name" name="@(Html.NameForModel())name" class="span2 provincedrop">
+    <option value="0">请选择</option>
+    @foreach (var item in provinces)
+    {
+        if (item.Id == Model.ToInt())
+        {
+        <option value="@item.Id" selected="selected">@item.Name</option>
+        }
+        else
+        {
+        <option value="@item.Id">@item.Name</option>
+        }
+    }
+</select>*@
+
+<select id="@(Html.IdForModel())" name="@(Html.NameForModel())" class="span2 provincedrop">
+    <option value="0">请选择</option>
+    @foreach (var item in provinces)
+    {
+        if (item.Name == Model)
+        {
+        <option value="@item.Name" selected="selected">@item.Name</option>
+        }
+        else
+        {
+        <option value="@item.Name">@item.Name</option>
+        }
+    }
+</select>

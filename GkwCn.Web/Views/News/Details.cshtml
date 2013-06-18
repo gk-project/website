@@ -1,0 +1,37 @@
+﻿@model GkwCn.Domains.News.News
+@{
+    ViewBag.Title = "新闻 - " + Model.Title + " - " + Model.Keyword;
+    ViewBag.Keywords = Model.Keyword;
+    ViewBag.Description = Model.Summary;
+}
+
+
+<div class="span9">
+    <h4 class="text-center"><span class="hide">@Html.DisplayFor(model=>model.Keyword)</span>@Html.DisplayFor(model => model.Title)<span> - 中国工业控制网</span></h4>
+    @if (!string.IsNullOrEmpty(Model.SubHead))
+    {
+        <blockquote class="offset1 text-right">
+            <p>@Html.DisplayFor(model => model.SubHead)</p>
+            <small>关键词 <cite title="@Html.DisplayFor(model => model.Title)">@Html.DisplayFor(model => model.Keyword)</cite></small>
+        </blockquote>
+    }
+    <hr />
+    <div class="offset1">@{Html.RenderAction("TagBarByKeywords", "Tag", new { keywords = Model.Keyword });}</div>
+    <h5><span class="label label-info offset1">@Html.DisplayFor(model => model.NewsType)</span> <span class="label offset1">发表时间：@Html.DisplayFor(model => model.CreateTime)</span> <span class="label label-inverse offset1">作者：@Html.DisplayFor(model => model.Writer.LoginName)</span></h5>
+    <div class="offset1">
+        <p class="hide">@Html.Raw(Model.Summary)</p>
+        <p>@Html.Raw(Model.Content)</p>
+        <p class="hide">@Html.DisplayFor(model=>model.Title)</p>
+        <small>免责声明：本站部分内容均来自互联网，如不慎侵害的您的相关权益，请留言告知，我们将尽快删除！</small>
+    </div>
+</div>
+@{Html.RenderAction("GetPartialList", "product", new { view = "GetProductByCId", size = 10 });}
+
+
+@section scripts{
+    <script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=1&amp;pos=right&amp;uid=6720770" ></script>
+	<script type="text/javascript" id="bdshell_js"></script>
+	<script type="text/javascript">
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
+	</script>
+}

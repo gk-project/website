@@ -1,0 +1,8 @@
+﻿@model CooperateListViewModel
+
+<ul>
+    @foreach (var item in Model.ListValue)
+    {
+        <li><a href="~/cooperate/details/@item.Id" target="_blank">@item.Title.ASubString(35) <span class="link">(@item.CreateTime.ToString("MM-dd"))</span></a></li>
+    }
+</ul>

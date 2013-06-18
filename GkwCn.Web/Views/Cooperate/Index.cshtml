@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "商务合作";
+}
+
+<style>
+    .thumbnails img {
+        width: 160px;
+        height: 60px;
+    }
+
+    .link {
+        color: #aeaeae;
+    }
+</style>
+<div class="span8">
+    <div>
+        <h5 class="page-header">项目合作 <span class="pull-right"><a href="~/cooperate/list?type=2&size=50" target="_blank">更多>></a></span></h5>
+        @{Html.RenderAction("GetPartialList", "Cooperate", new { type = (int)CooperateType.项目合作, size = 10 });}
+    </div>
+    <div>
+        <h5 class="page-header">寻找代理品牌 <span class="pull-right"><a href="~/cooperate/list?type=4&size=50" target="_blank">更多>></a></span></h5>
+        @{Html.RenderAction("GetPartialList", "Cooperate", new { type = (int)CooperateType.寻找代理品牌, size = 10 });}
+    </div>
+    <div>
+        <h5 class="page-header">技术转让 <span class="pull-right"><a href="~/cooperate/list?type=3&size=50" target="_blank">更多>></a></span></h5>
+        @{Html.RenderAction("GetPartialList", "Cooperate", new { type = (int)CooperateType.技术转让, size = 10 });}
+    </div>
+    <div>
+        <h5 class="page-header">诚征代理分销 <span class="pull-right"><a href="~/cooperate/list?type=0&size=50" target="_blank">更多>></a></span></h5>
+        @{Html.RenderAction("GetPartialList", "Cooperate", new { type = (int)CooperateType.诚征代理分销, size = 10 });}
+    </div>
+    <div>
+        <h5 class="page-header">诚征系统集成商 <span class="pull-right"><a href="~/cooperate/list?type=1&size=50" target="_blank">更多>></a></span></h5>
+        @{Html.RenderAction("GetPartialList", "Cooperate", new { type = (int)CooperateType.诚征系统集成商, size = 10 });}
+    </div>
+</div>
+<div class="span4">
+    <div class="span4">
+        <h5 class="page-header">热门品牌</h5>
+        @{Html.RenderAction("getpartiallist", "company", new { view = "HotCompanys", type = -1, size = 10 });}
+    </div>
+    <div class="span4">
+        <h5 class="page-header">热门产品</h5>
+        @{Html.RenderAction("getpartiallist", "product", new { view = "productsbyhit", type = -1, size = 5 });}
+    </div>
+</div>

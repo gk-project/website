@@ -1,0 +1,21 @@
+﻿@model NewsListViewModel
+
+
+<h5>@Html.DisplayFor(model => model.Type, "NewsType")<span class="pull-right"><a href="~/news/index?view=list&size=50&type=@Model.Type">更多>>></a></span></h5>
+<div>
+    <ul class="thumbnails">
+        @foreach (var item in Model.ListValue)
+        {
+            <li class="span2">
+                <a href="~/news/details/@item.Id" target="_blank" class="thumbnail">
+                    @if (!item.PictureUrl.IsNull())
+                    {
+                        <img alt="@item.Title" style="width: 260px; height: 180px;" src="@item.PictureUrl">
+                    }
+                    <h5>@(item.Title + (item.SubHead.IsNull() ? "" : "-" + item.SubHead))</h5>
+                    <p>@item.Summary</p>
+                </a>
+            </li>
+        }
+    </ul>
+</div>

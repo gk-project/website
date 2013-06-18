@@ -1,0 +1,53 @@
+﻿@model NewsListViewModel
+
+@{
+    ViewBag.Title = "新闻资讯";
+}
+
+<div class="span8">
+    <div>
+        @{Html.RenderAction("GetPartialList", new { type = 3, size = 4, view = "newslistbytype" });}
+    </div>
+    <div>
+        @{Html.RenderAction("GetPartialList", new { type = 1, size = 4, view = "newslistbytype" });}
+    </div>
+    <div>
+        @{Html.RenderAction("GetPartialList", new { type = 4, size = 4, view = "newslistbytype" });}
+    </div>
+    <div>
+        @{Html.RenderAction("GetPartialList", new { type = 2, size = 4, view = "newslistbytype" });}
+    </div>
+    <div>
+        @{Html.RenderAction("GetPartialList", new { type = 8, size = 4, view = "newslistbytype" });}
+    </div>
+    <div>
+        @{Html.RenderAction("GetPartialList", new { type = 5, size = 4, view = "newslistbytype" });}
+    </div>
+    <div>
+        @{Html.RenderAction("GetPartialList", new { type = 6, size = 4, view = "newslistbytype" });}
+    </div>
+    <div>
+        @{Html.RenderAction("GetPartialList", new { type = 7, size = 4, view = "newslistbytype" });}
+    </div>
+</div>
+<div class="span4">
+    <div class="span4">
+        <div class="pull-right">
+            <h5>热门关键词</h5>
+            <ul class="inline">
+                <li>新闻资讯</li>
+                <li>体育竞技</li>
+                <li>娱乐八卦</li>
+                <li>前沿科技</li>
+                <li>环球财经</li>
+                <li>天气预报</li>
+                <li>房产家居</li>
+                <li>网络游戏</li>
+            </ul>
+        </div>
+    </div>
+    <div class="span4">
+        <h5 class="page-header">热门产品</h5>
+        @{Html.RenderAction("getpartiallist", "product", new { view = "productsbyhit", type = -1, size = 12 });}
+    </div>
+</div>

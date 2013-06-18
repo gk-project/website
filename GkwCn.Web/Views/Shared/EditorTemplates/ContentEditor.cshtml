@@ -1,0 +1,8 @@
+﻿@model string
+
+<textarea name="@Html.NameForModel()" id="@Html.IdForModel()" class="ud">
+    @Html.Raw(Model)
+</textarea>
+
+<script src="~/Content/ueditor/ueditor.all.min.js"></script>
+<script src="~/Content/ueditor/ueditor.config.js"></script>

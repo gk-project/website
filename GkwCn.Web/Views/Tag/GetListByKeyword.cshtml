@@ -1,0 +1,55 @@
+﻿@model TagListViewModel
+@{
+    ViewBag.Title = Model.Keyword + " - " + Model.Type.ToString();
+    ViewBag.Keywords = Model.Keyword + " - " + Model.Type.ToString();
+    ViewBag.Description = Model.Keyword + " - " + Model.Type.ToString();
+}
+<style type="text/css">
+    .thumbnails img {
+        width: 160px;
+        height: 60px;
+    }
+
+    .link {
+        color: #aeaeae;
+    }
+</style>
+<div>
+    <div class="span8">
+        <h3 class="page-header">关键词标签：@Model.Keyword</h3>
+        <h5>@Model.Type</h5>
+        <ul>
+            @foreach (var item in Model.ListValue)
+            {
+                switch (Model.Type)
+                {
+                    case TagType.新闻资讯:
+                <li><a href="~/news/details/@item.Id" target="_blank">@item.Title - <span class="link">(@item.HitCount)</span></a></li>
+                        break;
+                    case TagType.企业厂商:
+                <li><a href="~/company/details/@item.Id" target="_blank">@item.Title - <span class="link">(@item.HitCount)</span></a></li>
+                        break;
+                    case TagType.产品选型:
+                <li><a href="~/product/details/@item.Id" target="_blank">@item.Title - <span class="link">(@item.HitCount)</span></a></li>
+                        break;
+                    case TagType.商务合作:
+                <li><a href="~/cooperate/details/@item.Id" target="_blank">@item.Title - <span class="link">(@item.HitCount)</span></a></li>
+                        break;
+                }
+            }
+        </ul>
+    </div>
+    <div class="span4">
+        <div class="span4">
+            <h5 class="page-header">热门品牌</h5>
+            @{Html.RenderAction("getpartiallist", "company", new { view = "HotCompanys", type = -1, size = 10 });}
+        </div>
+        <div class="span4">
+            <h5 class="page-header">热门产品</h5>
+            @{Html.RenderAction("getpartiallist", "product", new { view = "productsbyhit", type = -1, size = 12 });}
+        </div>
+    </div>
+</div>
+<div class="pagination pagination-small pagination-centered">
+    @Html.Raw(Model.Page.PagerSplitString)
+</div>

@@ -1,0 +1,30 @@
+﻿@model TagListViewModel
+
+@{
+    var typename = string.Empty;
+    switch (Model.Type)
+    {
+        case TagType.新闻资讯:
+            typename = "news";
+            break;
+        case TagType.企业厂商:
+            typename = "company";
+            break;
+        case TagType.产品选型:
+            typename = "product";
+            break;
+        case TagType.商务合作:
+            typename = "cooperate";
+            break;
+    }
+}
+
+<div class="span8">
+    <h5 class="page-header">@Model.Type <span class="pull-right"><a href="~/tag/getlistbykeyword?keyword=@Model.Keyword&type=@((int)Model.Type)&size=40">更多>></a></span></h5>
+    <ul>
+        @foreach (var item in Model.ListValue)
+        {
+            <li><a href="~/@typename/details/@item.Id" target="_blank">@item.Title - <span class="link">(@item.HitCount)</span></a></li>
+        }
+    </ul>
+</div>

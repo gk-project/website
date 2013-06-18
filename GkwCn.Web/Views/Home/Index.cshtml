@@ -1,0 +1,123 @@
+﻿@{
+    ViewBag.Title = "中国工业控制网";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<link href="~/content/index.css" rel="stylesheet" />
+<div class="carousel slide" id="carousel-739720">
+    <ol class="carousel-indicators">
+        <li class="active" data-slide-to="0" data-target="#carousel-739720"></li>
+        <li data-slide-to="1" data-target="#carousel-739720" class=""></li>
+        <li data-slide-to="2" data-target="#carousel-739720" class=""></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="item active">
+            <a href="http://a.gongkong.com/eplandesign/" target="_blank">
+                <img alt="EPLAN新品" src="http://pic.gongkong.com/UploadPic/gongkong/2013/eplan0517_980x300.jpg" style="height: 300px; width: 1170px;" width="1170" height="300">
+            </a>
+            <div class="carousel-caption">
+                <h4>走近EPLAN ,走进机电一体化—— 暨第二届EPLAN 杯电气工程设计大赛</h4>
+                <p>市场竞争愈发激烈，更高的设计效率、更少的工程花费、更短的产品研发周期是企业持续发展的重要因素。优秀的工程设计软件能够成为企业工程设计、技术开发的利器，甚至成为企业占领市场的关键。作为电气CAE设计软件的先锋，EPLAN 始终致力于为电气、流体、工艺工程与3D布局、布线设计及项目管理，提供智能化软件解决方案和专业化服务...</p>
+            </div>
+        </div>
+        <div class="item">
+            <a href="https://www.schneider-electric.com/tools/registration/promo/CN/ch/selectpromotions/51147F" target="_blank">
+                <img src="http://fs.gongkong.com/uploadpic/banner/201211/2012110614240000001.jpg" style="height: 300px; width: 1170px;" width="1170" height="300" />
+            </a>
+            <div class="carousel-caption">
+                <h4>施耐德电气工业自动化技术社区</h4>
+                <p>施耐德电气工业自动化技术交流社区，旨在为您提供一个便捷的技术交流平台，拉近您与我们的距离，并与施耐德电气的技术专家们进行沟通。</p>
+            </div>
+        </div>
+        <div class="item">
+            <a href="http://www.schneider-electric.cn/sites/china/cn/products-services/automation-control/forum/landing-na.page" target="_blank">
+                <img src="http://fs.gongkong.com/uploadpic/banner/201301/2013010809122300001.jpg" style="height: 300px; width: 1170px;" width="1170" height="300" />
+            </a>
+            <div class="carousel-caption">
+                <h4>2013 ABB 自动化世界-创新技术提升产业效率</h4>
+                <p>2013 ABB自动化世界将于5月23-24日在北京国家会议中心举办的2013年度“ABB自动化世界”活动。以低碳、高效为核心的可持续发展模式显示出对创新技术巨大推动力的强烈需求。在“创新技术提升产业效率”的主题下，“ABB自动化世界”活动迎来了它在中国的5岁生日。在与客户、学会及行业协会分享自动化领域最新的产品趋势、应用案例和...</p>
+            </div>
+        </div>
+    </div>
+    <a data-slide="prev" href="#carousel-739720" class="left carousel-control">‹</a> <a data-slide="next" href="#carousel-739720" class="right carousel-control">›</a>
+</div>
+
+<div class="row">
+    <div class="span6 news">
+        <h5 class="page-header">新闻资讯 <span class="pull-right"><a href="~/news/index" target="_blank">更多>></a></span></h5>
+        <div class="tabbable tabs-left">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#lA" data-toggle="tab">最新资讯</a></li>
+                <li class=""><a href="#lB" data-toggle="tab">企业新闻</a></li>
+                <li class=""><a href="#lC" data-toggle="tab">商务新闻</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="lA">
+                    @{Html.RenderAction("getlasternews", "news", new { view = "newslist", size = 10 });}
+                </div>
+                <div class="tab-pane" id="lB">
+                    @{Html.RenderAction("getpartiallist", "news", new { type = 8, view = "newslist", size = 10 });}
+                </div>
+                <div class="tab-pane" id="lC">
+                    @{Html.RenderAction("getpartiallist", "news", new { type = 6, view = "newslist", size = 10 });}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="span6 cmp">
+        <h5 class="page-header">企业/名品 <span class="pull-right"><a href="~/company/index" target="_blank">更多>></a></span></h5>
+        <div class="tabbable">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#A" data-toggle="tab">名企专区</a></li>
+                <li class=""><a href="#B" data-toggle="tab">名品专区</a></li>
+                @*<li class=""><a href="#C" data-toggle="tab">推荐动态</a></li>*@
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="A">
+                    @{Html.RenderAction("getpartiallist", "company", new { israndom = false, size = 12 });}
+                </div>
+                <div class="tab-pane" id="B">
+                    @{Html.RenderAction("getpartiallist", "product", new { size = 12 });}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="span12">
+        <h5 class="page-header">新品推荐 <span class="pull-right"><a href="~/product/index" target="_blank">更多>></a></span></h5>
+        @{Html.RenderAction("getpartiallist", "product", new { view = "HomeProductList", size = 6 });}
+    </div>
+</div>
+<br />
+<div class="row">
+    <div class="span6 hotcompany">
+        <h5 class="page-header">热门品牌 <span class="pull-right"><a href="~/company/index" target="_blank">更多>></a></span></h5>
+        @{Html.RenderAction("getpartiallist", "company", new { view = "HotCompanys", type = -1, size = 9 });}
+    </div>
+    <div class="span6 cooperates">
+        <h5 class="page-header">商务合作 <span class="pull-right"><a href="~/cooperate/index" target="_blank">更多>></a></span></h5>
+        <div class="tabbable tabs-right">
+            <ul class="nav nav-tabs">
+                <li class="active"><a href="#coopA" data-toggle="tab">项目合作</a></li>
+                <li class=""><a href="#coopB" data-toggle="tab">诚征代理分销</a></li>
+                <li class=""><a href="#coopC" data-toggle="tab">诚征系统集成商</a></li>
+                <li class=""><a href="#coopD" data-toggle="tab">寻找代理品牌</a></li>
+            </ul>
+            <div class="tab-content">
+                <div class="tab-pane active" id="coopA">
+                    @{Html.RenderAction("getpartiallist", "cooperate", new { type = 2, size = 11 });}
+                </div>
+                <div class="tab-pane" id="coopB">
+                    @{Html.RenderAction("getpartiallist", "cooperate", new { type = 0, size = 11 });}
+                </div>
+                <div class="tab-pane" id="coopC">
+                    @{Html.RenderAction("getpartiallist", "cooperate", new { type = 1, size = 11 });}
+                </div>
+                <div class="tab-pane" id="coopD">
+                    @{Html.RenderAction("getpartiallist", "cooperate", new { type = 4, size = 11 });}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

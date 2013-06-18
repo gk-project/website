@@ -1,0 +1,105 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{1A9A2B12-BD8C-48FA-8E05-D82615DB2829}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>GkwCn.Models</RootNamespace>
+    <AssemblyName>GkwCn.Models</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Commands\Business\CreateTradeCmd.cs" />
+    <Compile Include="Commands\Common\BaseDomainCmd.cs" />
+    <Compile Include="Commands\Common\BuildSitemapCmd.cs" />
+    <Compile Include="Commands\Company\CreateCompanyCmd.cs" />
+    <Compile Include="Commands\Company\EditCompanyCmd.cs" />
+    <Compile Include="Commands\User\ChangePasswordCmd.cs" />
+    <Compile Include="Commands\News\CreateNewsCmd.cs" />
+    <Compile Include="Commands\Common\DeleteDomainCmd.cs" />
+    <Compile Include="Commands\News\EditNewsCmd.cs" />
+    <Compile Include="Commands\User\RegisterCmd.cs" />
+    <Compile Include="Commands\Common\UpdateHitCmd.cs" />
+    <Compile Include="Commands\Common\RollbackDomainCmd.cs" />
+    <Compile Include="Domain\BaseData\BaseDataObject.cs" />
+    <Compile Include="Domain\BaseData\BaseSingleData.cs" />
+    <Compile Include="Domain\BaseData\BaseTreeData.cs" />
+    <Compile Include="Domain\BaseData\Brand.cs" />
+    <Compile Include="Domain\BaseData\Industry.cs" />
+    <Compile Include="Domain\BaseData\Logo.cs" />
+    <Compile Include="Domain\BaseData\ProductType.cs" />
+    <Compile Include="Domain\BaseData\ProvinceCity.cs" />
+    <Compile Include="Domain\BaseData\Region.cs" />
+    <Compile Include="Domain\BaseDomainObject.cs" />
+    <Compile Include="Domain\Business\Cooperate.cs" />
+    <Compile Include="Domain\Business\Sales.cs" />
+    <Compile Include="Domain\Business\SalesInfo.cs" />
+    <Compile Include="Domain\Business\SalesProductType.cs" />
+    <Compile Include="Domain\Business\Trade.cs" />
+    <Compile Include="Domain\Company.cs" />
+    <Compile Include="Domain\Enum\CooperateType.cs" />
+    <Compile Include="Domain\Enum\DomainStatue.cs" />
+    <Compile Include="Domain\Enum\TradeType.cs" />
+    <Compile Include="Domain\News\News.cs" />
+    <Compile Include="Domain\Product\Product.cs" />
+    <Compile Include="Domain\RegUser.cs" />
+    <Compile Include="Domain\RegUserLog.cs" />
+    <Compile Include="Events\ChangePasswordEvent.cs" />
+    <Compile Include="Events\RegisteredEvent.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewaModels\BaseListViewModel.cs" />
+    <Compile Include="ViewaModels\CompanyListViewModel.cs" />
+    <Compile Include="ViewaModels\CooperateListViewModel.cs" />
+    <Compile Include="ViewaModels\NewsListViewModel.cs" />
+    <Compile Include="ViewaModels\ProductListViewModel.cs" />
+    <Compile Include="ViewaModels\RegUserIndexVM.cs" />
+    <Compile Include="ViewaModels\TagListViewModel.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GkwCn.Framework\GkwCn.Framework.csproj">
+      <Project>{1dd1125a-3392-44bb-a355-f568487cd821}</Project>
+      <Name>GkwCn.Framework</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

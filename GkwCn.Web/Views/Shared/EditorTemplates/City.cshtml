@@ -1,0 +1,14 @@
+﻿@model string
+
+@*<input id="@Html.IdForModel()" name="@Html.NameForModel()" value="@Html.ValueForModel()" type="hidden" class="city"/>
+
+<select id="@(Html.IdForModel())name" name="@(Html.NameForModel())name" class="span2 citydrop"><option value="0">请选择</option></select>*@
+
+
+<select id="@(Html.IdForModel())" name="@(Html.NameForModel())" class="span2 citydrop">
+    <option value="0">请选择</option>
+    @if (!Model.IsNullOrEmpty())
+    {
+        <option value="@Model" selected="selected">@Model</option>
+    }
+</select>
