@@ -1,4 +1,7 @@
-﻿using GkwCn.Framework.Mvc;
+﻿using GkwCn.Domains.Business;
+using GkwCn.Framework.Commands.Buses;
+using GkwCn.Framework.Mvc;
+using GkwCn.Models.Commands.Business;
 using GkwCn.QueryService;
 using System;
 using System.Collections.Generic;
@@ -19,8 +22,16 @@ namespace GkwCn.Web.Controllers
 
         public ActionResult Create()
         {
+            var cmd = new CreateTradeCmd();
+            return View(cmd);
+        }
 
-            return View();
+        [HttpPost]
+        [ActionName("create")]
+        public ActionResult PostCreate(CreateTradeCmd cmd)
+        {
+            var domain = DefaultCommandBus.Instance.SendCommand<CreateTradeCmd, Trade>(cmd);
+            return RedirectToAction("details", new { id = domain.Id });
         }
     }
 }

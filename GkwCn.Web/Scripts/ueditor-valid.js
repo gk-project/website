@@ -5,6 +5,8 @@ $(function () {
     var editor = new UE.ui.Editor();
     editor.render($(".ud").attr("id"));
 
+	$.editor=editor;
+
     $("form").submit(function () {
         var $form = $(this);
         var contentValid = editor && editor.getContent().length >= 10;

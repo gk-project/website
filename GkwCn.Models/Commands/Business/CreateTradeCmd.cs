@@ -20,9 +20,9 @@ namespace GkwCn.Models.Commands.Business
         [DisplayName("其它品牌")]
         public string SecondBrand { get; set; }
 
-        [Required]
-        [DisplayName("是否审核")]
-        public bool Auditing { get; set; }
+        //[Required]
+        //[DisplayName("是否审核")]
+        //public bool Auditing { get; set; }
 
         [MaxLength(100)]
         [DisplayName("公司名称")]
@@ -63,6 +63,8 @@ namespace GkwCn.Models.Commands.Business
         [DisplayName("型号")]
         public string Model { get; set; }
 
+        public int? ProductTypeId { get; set; }
+
         public int? BrandId { get; set; }
 
         public int? CompanyId { get; set; }
@@ -70,6 +72,17 @@ namespace GkwCn.Models.Commands.Business
         public virtual Company Company { get; set; }
 
         public virtual Brand Brand { get; set; }
+
+        [Required]
+        [DisplayName("是否简易发布方式")]
+        public bool IsEasy { get; set; }
+
+        public CreateTradeCmd()
+        {
+            IsEasy = true;
+            Amount = "未设置";
+            TermDay = 30;
+        }
 
     }
 }

@@ -1,0 +1,152 @@
+﻿@model GkwCn.Models.Commands.Business.CreateTradeCmd
+
+@{
+    ViewBag.Title = "发布供求信息";
+}
+
+<div class="span10">
+    @using (Html.BeginForm("create", "trade", FormMethod.Post, new { @class = "form-horizontal" }))
+    {
+        <fieldset>
+            <legend class="page-header">联系方式</legend>
+            @*<h4 class="page-header">联系方式</h4>*@
+            <div class="control-group">
+                @Html.LabelFor(model => model.LinkMan, new { @class = "control-label" })
+                <div class="controls controls-row">
+                    @Html.EditorFor(model => model.LinkMan)
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.LinkMan)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.CompanyName, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.CompanyName)
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.CompanyName)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Email, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.Email)
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.Email)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Phone, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Phone)
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.Phone)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Fax, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Fax)
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.LinkMan)</span>
+                </div>
+            </div>
+            <br />
+            @*<h4 class="page-header">供求详情</h4>*@
+            <legend class="page-header">供求详情</legend>
+            @Html.HiddenFor(model => model.RegUserId)
+            <div class="control-group">
+                @Html.LabelFor(model => model.TradeType, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.TradeType)
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.TradeType)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Title, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.Title, new { @class = "input-xxlarge" })
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.Title)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Content, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Content, "ContentEditor")
+                    <p class="text-error uderror" data-title="@Html.DisplayNameFor(model => model.Content)">@Html.ValidationMessageFor(model => model.Content)</p>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Keyword, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(model => model.Keyword, new { @class = "input-xxlarge" })
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.Keyword)</span>
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(model => model.Summary, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextAreaFor(model => model.Summary, new { @class = "input-xxlarge", rows = "5" })
+                    <p class="text-error">@Html.ValidationMessageFor(model => model.Summary)</p>
+                </div>
+            </div>
+            <div class="control-group  text-center">
+                <h4>点击发布详细供求信息@(Html.EditorFor(model => model.IsEasy))</h4>
+            </div>
+            <div class="hide">
+                <div class="control-group">
+                    @Html.LabelFor(model => model.TermDay, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.TermDay)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.Amount, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.Amount)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.PictureUrl, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.PictureUrl)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.Model, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.Model)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.Manufacturer, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.TextBoxFor(model => model.Manufacturer, new { @class = "input-xxlarge" })
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.SecondBrand, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.SecondBrand)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.ProductTypeId, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.ProductTypeId)
+                    </div>
+                </div>
+                <div class="control-group">
+                    @Html.LabelFor(model => model.BrandId, new { @class = "control-label" })
+                    <div class="controls">
+                        @Html.EditorFor(model => model.BrandId)
+                    </div>
+                </div>
+            </div>
+            <div class="control-group text-center">
+                <div class="controls">
+                    <input type="submit" value="发布供求信息" class="btn btn-primary" />
+                </div>
+            </div>
+        </fieldset>
+    }
+
+</div>
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script type="text/javascript" src="~/Scripts/ueditor-valid.js"></script>
+}
