@@ -1,0 +1,17 @@
+﻿@model GkwCn.Models.Commands.Common.GetSiteMapCmd
+
+@{
+    ViewBag.Title = "站点地图";
+    ViewBag.Keywords = "站点地图";
+    ViewBag.Description = "站点地图";
+}
+
+<div class="span10">
+    <h3 class="page-header">站点地图-工业控制网</h3>
+    <ul>
+        @foreach (var url in Model.MapFiles)
+        {
+            <li><a href="@url" target="_blank">@url</a></li>
+        }
+    </ul>
+</div>

@@ -1,4 +1,6 @@
-﻿using GkwCn.Framework.Mvc;
+﻿using GkwCn.Framework.Commands.Buses;
+using GkwCn.Framework.Mvc;
+using GkwCn.Models.Commands.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +19,12 @@ namespace GkwCn.Web.Controllers
             return View();
         }
 
+        public ActionResult SiteMap()
+        {
+            var cmd = new GetSiteMapCmd();
+            DefaultCommandBus.Instance.SendCommand(cmd);
+            return View(cmd);
+        }
 
         protected override void DisposeQueryService()
         {
