@@ -45,6 +45,7 @@
     <Compile Include="CommandExecuters\BuildSitemapCmdExecuter.cs" />
     <Compile Include="CommandExecuters\ChangePasswordCmdExecuter.cs" />
     <Compile Include="CommandExecuters\CreateNewsCmdExecuter.cs" />
+    <Compile Include="CommandExecuters\CreateTradeCmdExecuter.cs" />
     <Compile Include="CommandExecuters\GetSiteMapCmdExecuter.cs" />
     <Compile Include="CommandExecuters\RegisterCmdExecuter.cs" />
     <Compile Include="CommandExecuters\UpdateHitCmdExecuter.cs" />

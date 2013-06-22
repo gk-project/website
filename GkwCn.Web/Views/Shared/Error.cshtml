@@ -56,7 +56,10 @@
                 <h2>对不起，出错了</h2>
 
                 <p>对不起，服务器可能出现了异常，请您稍候重试！</p>
-                <p>错误信息：@Context.Error.Message</p>
+                @if (!Context.Error.IsNull())
+                {
+                    <p>错误信息：@Context.Error.Message</p>
+                }
 
                 <p><a class="btn btn-primary btn-large" href="http://www.gkwcn.com">返回首页 &raquo;</a></p>
             </div>
