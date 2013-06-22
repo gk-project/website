@@ -32,6 +32,13 @@
                 </div>
             </div>
             <div class="control-group">
+                @Html.LabelFor(model => model.Handset, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.Handset)
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.Handset)</span>
+                </div>
+            </div>
+            <div class="control-group">
                 @Html.LabelFor(model => model.Phone, new { @class = "control-label" })
                 <div class="controls">
                     @Html.EditorFor(model => model.Phone)
@@ -39,10 +46,17 @@
                 </div>
             </div>
             <div class="control-group">
+                @Html.LabelFor(model => model.OtherLink, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.EditorFor(model => model.OtherLink)
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.LinkMan)</span>
+                </div>
+            </div>
+            <div class="control-group">
                 @Html.LabelFor(model => model.Fax, new { @class = "control-label" })
                 <div class="controls">
                     @Html.EditorFor(model => model.Fax)
-                    <span class="text-error">@Html.ValidationMessageFor(model => model.LinkMan)</span>
+                    <span class="text-error">@Html.ValidationMessageFor(model => model.Fax)</span>
                 </div>
             </div>
             <br />
