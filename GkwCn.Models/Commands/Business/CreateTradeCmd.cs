@@ -44,6 +44,14 @@ namespace GkwCn.Models.Commands.Business
         [DisplayName("联系电话")]
         public string Phone { get; set; }
 
+        [DisplayName("手机号码")]
+        [MaxLength(100)]
+        public string Handset { get; set; }
+
+        [DisplayName("QQ/MSN")]
+        [MaxLength(20)]
+        public string OtherLink { get; set; }
+
         [MaxLength(100)]
         [DisplayName("生产厂家")]
         public string Manufacturer { get; set; }
