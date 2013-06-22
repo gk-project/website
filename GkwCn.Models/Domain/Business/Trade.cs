@@ -20,11 +20,20 @@ namespace GkwCn.Domains.Business
         [MaxLength(200)]
         public string Model { get; set; }
 
+        /// <summary>
+        /// 联系方式(QQ/MSN)
+        /// </summary>
+        [MaxLength(100)]
+        public string OtherLink { get; set; }
+
         [MaxLength(100)]
         public string LinkMan { get; set; }
 
         [MaxLength(20)]
         public string Phone { get; set; }
+
+        [MaxLength(20)]
+        public string Handset { get; set; }
 
         [MaxLength(100)]
         public string Email { get; set; }

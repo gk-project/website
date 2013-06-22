@@ -1,0 +1,7 @@
+﻿@model TradeType
+
+<select id="@Html.IdForModel()" name="@Html.NameForModel()">
+    <option value="0" @(Model == TradeType.买 ? "selected=\"selected\"" : "")>买</option>
+    <option value="1" @(Model == TradeType.卖 ? "selected=\"selected\"" : "")>卖</option>
+    <option value="2" @(Model == TradeType.备件 ? "selected=\"selected\"" : "")>备件</option>
+</select>
