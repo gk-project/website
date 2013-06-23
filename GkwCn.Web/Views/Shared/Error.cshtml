@@ -28,6 +28,7 @@
                 </div>
                 <div class="navbar-inner">
                     <div class="container">
+<<<<<<< HEAD
                         <ul class="nav">
                             <li><a href="/">首页</a></li>
                             <li class=""><a href="/news/index">新闻资讯</a></li>
@@ -39,6 +40,9 @@
                             <li class="active"><a href="aboutme.html">关于我们</a></li>
                         </ul>
 
+=======
+                        @{Html.RenderPartial("Navbar", ViewContext.RouteData.Values["controller"]);}
+>>>>>>> gongqiu
                         <div class="pull-right">
                             <button class="btn">登录</button>
                             <button class="btn">注册</button>
@@ -51,12 +55,23 @@
         <div class="span10">
             <div class="hero-unit">
                 <a href="http://www.gkwcn.com" title="中国工业控制网">
+<<<<<<< HEAD
                     <img src="Content/images/logo.png" alt="中国工业控制网" />
+=======
+                    <img src="~/Content/images/logo.png" alt="中国工业控制网" />
+>>>>>>> gongqiu
                 </a>
                 <h2>对不起，出错了</h2>
 
                 <p>对不起，服务器可能出现了异常，请您稍候重试！</p>
+<<<<<<< HEAD
                 <p>错误信息：@Context.Error.Message</p>
+=======
+                @if (!Context.Error.IsNull())
+                {
+                    <p>错误信息：@Context.Error.Message</p>
+                }
+>>>>>>> gongqiu
 
                 <p><a class="btn btn-primary btn-large" href="http://www.gkwcn.com">返回首页 &raquo;</a></p>
             </div>

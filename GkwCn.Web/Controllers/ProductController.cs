@@ -46,11 +46,11 @@ namespace GkwCn.Web.Controllers
             return PartialView(new ProductListViewModel() { CompanyId = companyid, CompanyName = company.Name, ListValue = produsts, Page = page });
         }
 
-        [OutputCache(Duration = 300, VaryByParam = "type;index;view;size;israndom;")]
+        //[OutputCache(Duration = 300, VaryByParam = "type;index;view;size;israndom;")]
         public ActionResult GetPartialList(string view, int? type, Pager page, bool? isRandom = true)
         {
             if (isRandom.Value)
-                page.Index = random.Next(0, 500);
+                page.Index = random.Next(0, 100);
             IEnumerable<Product> produsts = null;
             if (type.IsNull() || !type.HasValue || type.Value < 0)
                 produsts = query.GetList<Product>(p => p.Statue == DomainStatue.Effective && !string.IsNullOrEmpty(p.PictureUrl), ps => ps.OrderByDescending(p => p.PublishTime), page);
@@ -69,7 +69,23 @@ namespace GkwCn.Web.Controllers
         public ActionResult Details(int id)
         {
             var domain = DefaultCommandBus.Instance.SendCommand<UpdateHitCmd, Product>(new UpdateHitCmd() { Id = id, Type = SiteType.PRODUCT });
+            if (domain == null || domain.Statue != DomainStatue.Effective)
+                return HttpNotFound();
             return View(domain);
+        }
+
+        //public ActionResult Delete(DeleteDomainCmd cmd)
+        //{
+        //    cmd.Type = SiteType.PRODUCT;
+        //    DefaultCommandBus.Instance.SendCommand(cmd);
+        //    return RedirectToAction("index");
+        //}
+
+        public ActionResult Rollback(RollbackDomainCmd cmd)
+        {
+            cmd.Type = SiteType.PRODUCT;
+            DefaultCommandBus.Instance.SendCommand(cmd);
+            return RedirectToAction("details", new { id = cmd.Id });
         }
     }
 }

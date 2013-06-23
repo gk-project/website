@@ -1,6 +1,7 @@
 ﻿using GkwCn.Domains.BaseData;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -23,14 +24,18 @@ namespace GkwCn.Domains
 
         public int Sequence { get; set; }
 
+        [DisplayName("关键词")]
         [MaxLength(200)]
         public string Keyword { get; set; }
 
+        [DisplayName("描述")]
         [MaxLength(500)]
         public string Summary { get; set; }
 
+        [DisplayName("浏览量")]
         public int Hit { get; set; }
 
+        [DisplayName("创建时间")]
         [Required]
         public DateTime CreateTime { get; set; }
 

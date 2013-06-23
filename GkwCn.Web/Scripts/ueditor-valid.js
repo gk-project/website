@@ -5,6 +5,11 @@ $(function () {
     var editor = new UE.ui.Editor();
     editor.render($(".ud").attr("id"));
 
+<<<<<<< HEAD
+=======
+	$.editor=editor;
+
+>>>>>>> gongqiu
     $("form").submit(function () {
         var $form = $(this);
         var contentValid = editor && editor.getContent().length >= 10;

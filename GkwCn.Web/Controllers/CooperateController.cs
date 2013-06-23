@@ -38,7 +38,7 @@ namespace GkwCn.Web.Controllers
             return View(new CooperateListViewModel() { ListValue = cooperates, Page = page });
         }
 
-        [OutputCache(Duration = 300, VaryByParam = "type;index;size;view;israndom")]
+        //[OutputCache(Duration = 300, VaryByParam = "type;index;size;view;israndom")]
         public ActionResult GetPartialList(int? type,string view, Pager page, bool? isRandom = false)
         {
             IEnumerable<Cooperate> cooperates;
@@ -55,7 +55,23 @@ namespace GkwCn.Web.Controllers
         public ActionResult Details(int id)
         {
             var domain = DefaultCommandBus.Instance.SendCommand<UpdateHitCmd, Cooperate>(new UpdateHitCmd() { Id = id, Type = SiteType.COOPERATE });
+            if (domain == null || domain.Statue != DomainStatue.Effective)
+                return HttpNotFound();
             return View(domain);
+        }
+
+        //public ActionResult Delete(DeleteDomainCmd cmd)
+        //{
+        //    cmd.Type = SiteType.COOPERATE;
+        //    DefaultCommandBus.Instance.SendCommand(cmd);
+        //    return RedirectToAction("index");
+        //}
+
+        public ActionResult Rollback(RollbackDomainCmd cmd)
+        {
+            cmd.Type = SiteType.COOPERATE;
+            DefaultCommandBus.Instance.SendCommand(cmd);
+            return RedirectToAction("details", new { id = cmd.Id });
         }
 
         protected override void DisposeQueryService()

@@ -1,0 +1,43 @@
+﻿@model GkwCn.Models.ViewaModels.TradeListViewModel
+
+@{
+    ViewBag.Title = "商务合作";
+    if (Model.Type != null && Model.Type.HasValue && Model.Type.Value >= 0)
+    {
+        ViewBag.Title = "" + ((CooperateType)Model.Type);
+    }
+}
+
+<style>
+    .thumbnails img {
+        width: 160px;
+        height: 60px;
+    }
+
+    .link {
+        color: #aeaeae;
+    }
+</style>
+<div class="span8">
+    <h4 class="page-header">@Html.DisplayFor(model => model.TradeType)</h4>
+    <ul>
+        @foreach (var item in Model.ListValue)
+        {
+            <li><a href="~/trade/details/@item.Id" target="_blank">@item.Title - [@item.Hit] - (@item.CreateTime.ToString("yyyy-MM-dd"))</a></li>
+        }
+    </ul>
+</div>
+<div class="span4">
+    <div class="span4">
+        <h5 class="page-header">热门品牌</h5>
+        @{Html.RenderAction("getpartiallist", "company", new { view = "HotCompanys", type = -1, size = 10 });}
+    </div>
+    <div class="span4">
+        <h5 class="page-header">热门产品</h5>
+        @{Html.RenderAction("getpartiallist", "product", new { view = "productsbyhit", type = -1, size = 4 });}
+    </div>
+
+</div>
+<div class="pagination pagination-small pagination-centered">
+    @Html.Raw(Model.Page.PagerSplitString)
+</div>

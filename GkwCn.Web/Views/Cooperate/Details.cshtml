@@ -23,11 +23,17 @@
         @{Html.RenderAction("TagBarByKeywords", "Tag", new { keywords = Model.Keyword });}
         <p>
             <label class="label">公司名称：</label>
+<<<<<<< HEAD
             @Model.CompanyName</p>
+=======
+            @Model.CompanyName
+        </p>
+>>>>>>> gongqiu
         @if (!Model.AreaInsutry.IsNull())
         {
             <p>
                 <label class="label">合作区域：</label>
+<<<<<<< HEAD
                 @Html.DisplayFor(model => model.AreaInsutry)</p>
         }
         <p><label class="label">描述：</label>@Html.DisplayFor(model => model.Summary)</p>
@@ -35,12 +41,30 @@
 </div>
 <div>
     <div class="span9">
+=======
+                @Html.DisplayFor(model => model.AreaInsutry)
+            </p>
+        }
+        <p>
+            <label class="label">描述：</label>@Html.DisplayFor(model => model.Summary)</p>
+    </div>
+</div>
+<div class="span9">
+    <div>
+>>>>>>> gongqiu
         <h4 class="page-header">合作详情</h4>
         <p class="hide">@Html.DisplayFor(model => model.Summary)</p>
         <p class="offset1">@Html.Raw(Model.Content)</p>
         <p class="hide">@Html.DisplayFor(model => model.Title)</p>
+<<<<<<< HEAD
         <small>免责声明：本站部分内容均来自互联网，如不慎侵害的您的相关权益，请留言告知，我们将尽快删除！</small>
     </div>
+=======
+        <small>免责声明：本站部分内容均来自互联网，如不慎侵害了您的相关权益，请留言告知，我们将尽快删除！</small>
+    </div>
+</div>
+<div class="span3">
+>>>>>>> gongqiu
     @if (!Model.Company.IsNull())
     {
         <div class="span3">
@@ -57,7 +81,11 @@
             <h4 class="page-header">企业新闻</h4>
             @{Html.RenderAction("GetCompanyNews", "news", new { companyid = Model.CompanyId, size = 10, view = "companynewslist" });}
         </div>
+<<<<<<< HEAD
         { Html.RenderAction("getproductbycid", "product", new { companyid = Model.CompanyId, size = 6 }); }
+=======
+              { Html.RenderAction("getproductbycid", "product", new { companyid = Model.CompanyId, size = 6 }); }
+>>>>>>> gongqiu
     }
 </div>
 

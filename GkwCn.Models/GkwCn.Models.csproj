@@ -42,8 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Commands\Business\CreateTradeCmd.cs" />
+    <Compile Include="Commands\Business\EditTradeCmd.cs" />
     <Compile Include="Commands\Common\BaseDomainCmd.cs" />
     <Compile Include="Commands\Common\BuildSitemapCmd.cs" />
+    <Compile Include="Commands\Common\GetSiteMapCmd.cs" />
     <Compile Include="Commands\Company\CreateCompanyCmd.cs" />
     <Compile Include="Commands\Company\EditCompanyCmd.cs" />
     <Compile Include="Commands\User\ChangePasswordCmd.cs" />
@@ -86,6 +88,7 @@
     <Compile Include="ViewaModels\ProductListViewModel.cs" />
     <Compile Include="ViewaModels\RegUserIndexVM.cs" />
     <Compile Include="ViewaModels\TagListViewModel.cs" />
+    <Compile Include="ViewaModels\TradeListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GkwCn.Framework\GkwCn.Framework.csproj">
