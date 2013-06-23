@@ -13,6 +13,7 @@ namespace GkwCn.Models.Commands
         COMPANY = 1,
         PRODUCT = 2,
         COOPERATE = 3,
+        TRADE=4,
     }
 
     public class BuildSitemapCmd : ICommand

@@ -1,0 +1,102 @@
+﻿@model Trade
+
+@{
+    ViewBag.Title = Model.Title + " - " + Model.TradeType.ToString();
+    ViewBag.Keywords = Model.Keyword;
+    ViewBag.Description = Model.Summary;
+}
+
+<style type="text/css">
+    .cmp img {
+        height: 60px;
+    }
+</style>
+<div class="span9">
+    <div class="hero-unit">
+        @if (!Model.PictureUrl.IsNull())
+        {
+            <img src="@Model.PictureUrl" alt="@Model.Title" />
+        }
+        <blockquote>
+            <h2>@Model.Title</h2>
+            @if (!Model.Model.IsNull())
+            {
+                <small class="text-right" style="font-size: 18px;">@Model.Model</small>
+            }
+        </blockquote>
+        @{Html.RenderAction("TagBarByKeywords", "Tag", new { keywords = Model.Keyword });}
+        <p>@Html.Raw(Model.Summary)</p>
+    </div>
+    <div class="clearfix"></div>
+    <div>
+        <h4 class="page-header">参数列表<span class="pull-right label">@Html.DisplayNameFor(model => model.Hit):@Html.ValueFor(model => model.Hit)</span></h4>
+        <table class="table table-bordered table-condensed text-right">
+            <tr>
+                <th style="width: 150px;">@Html.LabelFor(model => model.Model)</th>
+                <td>@Html.DisplayFor(model => model.Model)</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.Manufacturer)</th>
+                <td>@Html.DisplayFor(model => model.Manufacturer)</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.SecondBrand)</th>
+                <td>@Html.DisplayFor(model => model.SecondBrand)</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.Amount)</th>
+                <td>@Html.DisplayFor(model => model.Amount)</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.Price)</th>
+                <td>@Html.DisplayFor(model => model.Price)</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.Auditing)</th>
+                <td>@Html.DisplayFor(model => model.Auditing)</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.TermDay)</th>
+                <td>@Html.DisplayFor(model => model.TermDay)</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.IsTimeout)</th>
+                <td>@Html.DisplayFor(model => model.IsTimeout)</td>
+            </tr>
+            <tr>
+                <th>@Html.LabelFor(model => model.CreateTime)</th>
+                <td>@Html.DisplayFor(model => model.CreateTime)</td>
+            </tr>
+        </table>
+        <h4 class="page-header">供求详情</h4>
+        <div>@Html.Raw(Model.Content)</div>
+    </div>
+</div>
+<div class="span3">
+    <div>
+        <h5 class="page-header">联系我们</h5>
+        <ul class="thumbnail unstyled">
+            <li><span>联系人：</span><span>@Html.DisplayFor(model => model.LinkMan)</span></li>
+            <li><span>手机号：</span><span>@Html.DisplayFor(model => model.Handset)</span></li>
+            <li><span>座机：</span><span>@Html.DisplayFor(model => model.Phone)</span></li>
+            <li><span>传真：</span><span>@Html.DisplayFor(model => model.Fax)</span></li>
+            <li><span>邮箱：</span><span><a href="MailTo:@Html.DisplayFor(model => model.Email)">@Html.DisplayFor(model => model.Email)</a></span></li>
+            <li><span>公司名称：</span><span>@Html.DisplayFor(model => model.CompanyName)</span></li>
+            <li><span>通讯地址：</span><span>@Html.DisplayFor(model => model.Address)</span></li>
+        </ul>
+    </div>
+    <div>
+        <div class="unstyled">
+            <h5 class="page-header">商务合作</h5>
+            <div style="font-size:12px;">
+                @{Html.RenderAction("getpartiallist", "cooperate", new { size = 8, israndom = true });}
+            </div>
+        </div>
+        <div>
+            <h5 class="page-header">热门品牌</h5>
+            <div style="margin-left: 35px;">
+                @{Html.RenderAction("getpartiallist", "company", new { view = "hotcompanys", size = 10 });}
+            </div>
+        </div>
+    </div>
+</div>

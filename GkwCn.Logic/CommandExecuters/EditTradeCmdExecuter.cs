@@ -9,13 +9,12 @@ using System.Threading.Tasks;
 
 namespace GkwCn.Logic.CommandExecuters
 {
-    public class CreateTradeCmdExecuter : AbstractCommandExecuter<CreateTradeCmd>
+    public class EditTradeCmdExecuter : AbstractCommandExecuter<EditTradeCmd>
     {
-        public override object Execute(CreateTradeCmd cmd)
+        public override object Execute(EditTradeCmd cmd)
         {
-            var domain = new Trade();
+            var domain = UnitOfWork.Get<Trade>(cmd.Id);
             domain.InitDomain(cmd);
-            UnitOfWork.Save(domain);
             UnitOfWork.Commit();
             return domain;
         }

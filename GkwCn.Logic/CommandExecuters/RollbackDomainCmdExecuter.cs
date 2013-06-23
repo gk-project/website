@@ -31,6 +31,9 @@ namespace GkwCn.Logic.CommandExecuters
                 case SiteType.COOPERATE:
                     domain = UnitOfWork.Get<Cooperate>(cmd.Id);
                     break;
+                case SiteType.TRADE:
+                    domain = UnitOfWork.Get<Trade>(cmd.Id);
+                    break;
             }
             domain.RollbackStatue();
             UnitOfWork.Commit();

@@ -302,6 +302,13 @@
     <Content Include="Views\Trade\Create.cshtml" />
     <Content Include="Views\Home\SiteMap.cshtml" />
     <Content Include="Views\Shared\EditorTemplates\TradeType.cshtml" />
+    <Content Include="Views\Trade\Edit.cshtml" />
+    <Content Include="Views\Trade\Details.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\Boolean.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\TradeType.cshtml" />
+    <Content Include="Views\Trade\Index.cshtml" />
+    <Content Include="Views\Trade\GetPartialList.cshtml" />
+    <Content Include="Views\Trade\List.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

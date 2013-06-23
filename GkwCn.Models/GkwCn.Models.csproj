@@ -88,6 +88,7 @@
     <Compile Include="ViewaModels\ProductListViewModel.cs" />
     <Compile Include="ViewaModels\RegUserIndexVM.cs" />
     <Compile Include="ViewaModels\TagListViewModel.cs" />
+    <Compile Include="ViewaModels\TradeListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\GkwCn.Framework\GkwCn.Framework.csproj">

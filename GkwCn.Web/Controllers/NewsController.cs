@@ -39,7 +39,7 @@ namespace GkwCn.Web.Controllers
             return View(view ?? "Index", new NewsListViewModel() { ListValue = newslist, Page = page, Type = type ?? -1 });
         }
 
-        [OutputCache(Duration = 60, VaryByParam = "type;index;size;view;israndom;")]
+        //[OutputCache(Duration = 60, VaryByParam = "type;index;size;view;israndom;")]
         public ActionResult GetPartialList(int? type, string view, Pager page, bool? isRandom = true)
         {
             if (isRandom.Value)
@@ -60,10 +60,10 @@ namespace GkwCn.Web.Controllers
 
         public ActionResult Details(int id)
         {
-            var news = DefaultCommandBus.Instance.SendCommand<UpdateHitCmd, News>(new UpdateHitCmd() { Id = id, Type = SiteType.NEWS });
-            if (news == null || news.Statue != DomainStatue.Effective)
+            var domain = DefaultCommandBus.Instance.SendCommand<UpdateHitCmd, News>(new UpdateHitCmd() { Id = id, Type = SiteType.NEWS });
+            if (domain == null || domain.Statue != DomainStatue.Effective)
                 return HttpNotFound();
-            return View(news);
+            return View(domain);
         }
 
         [OutputCache(Duration = 300, VaryByParam = "index;size;companyid;")]

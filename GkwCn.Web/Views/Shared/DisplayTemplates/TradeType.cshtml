@@ -1,0 +1,14 @@
+﻿@model TradeType
+
+@switch (Model)
+{
+    case TradeType.买:
+    @:求购产品
+        break;
+    case TradeType.卖:
+    @:出购产品
+        break;
+    case TradeType.备件:
+    @:产品备件
+        break;
+}

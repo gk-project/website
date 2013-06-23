@@ -1,11 +1,11 @@
-﻿@model GkwCn.Models.Commands.Business.CreateTradeCmd
+﻿@model GkwCn.Models.Commands.Business.EditTradeCmd
 
 @{
-    ViewBag.Title = "发布供求信息";
+    ViewBag.Title = "编辑供求信息";
 }
 
 <div class="span10">
-    @using (Html.BeginForm("create", "trade", FormMethod.Post, new { @class = "form-horizontal" }))
+    @using (Html.BeginForm("edit", "trade", FormMethod.Post, new { @class = "form-horizontal" }))
     {
         <fieldset>
             <legend class="page-header">联系方式</legend>
@@ -103,10 +103,7 @@
                     <p class="text-error">@Html.ValidationMessageFor(model => model.Summary)</p>
                 </div>
             </div>
-            <div class="control-group  text-center">
-                <h4 id="isEasy">点击发布详细供求信息@(Html.HiddenFor(model => model.IsEasy))</h4>
-            </div>
-            <div class="hide" id="detail_info">
+            <div id="detail_info">
                 <div class="control-group">
                     @Html.LabelFor(model => model.TermDay, new { @class = "control-label" })
                     <div class="controls">
@@ -160,7 +157,9 @@
             </div>
             <div class="control-group text-center">
                 <div class="controls">
-                    <input type="submit" value="发布供求信息" class="btn btn-primary" />
+                    @Html.HiddenFor(model => model.Id)
+                    @Html.HiddenFor(model => model.IsEasy)
+                    <input type="submit" value="保存供求信息" class="btn btn-primary" />
                 </div>
             </div>
         </fieldset>
@@ -170,13 +169,4 @@
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
     <script type="text/javascript" src="~/Scripts/ueditor-valid.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            var $iseasy=$("#IsEasy");
-            $("#isEasy").click(function () {
-                $iseasy.val(!$iseasy.val());
-                $("#detail_info").toggle($iseasy.val());
-            });
-        });
-    </script>
 }

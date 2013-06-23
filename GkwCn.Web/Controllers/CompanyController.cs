@@ -30,11 +30,11 @@ namespace GkwCn.Web.Controllers
             return View(new CompanyListViewModel() { ListValue = companys, Page = page });
         }
 
-        [OutputCache(Duration = 300, VaryByParam = "index;size;view;israndom")]
+        //[OutputCache(Duration = 300, VaryByParam = "index;size;view;israndom")]
         public ActionResult GetPartialList(string view, Pager page, bool? isRandom = true)
         {
             if (isRandom.Value)
-                page.Index = random.Next(0, 500);
+                page.Index = random.Next(0, 200);
             var companys = query.GetList<Company>(o => o.Statue == DomainStatue.Effective && !string.IsNullOrEmpty(o.Logo), cs => cs.OrderByDescending(c => c.Hit), page);
             return PartialView(view ?? "GetPartialList", new CompanyListViewModel() { ListValue = companys, Page = page });
         }
@@ -42,6 +42,8 @@ namespace GkwCn.Web.Controllers
         public ActionResult Details(int id)
         {
             var domain = DefaultCommandBus.Instance.SendCommand<UpdateHitCmd, Company>(new UpdateHitCmd() { Id = id, Type = SiteType.COMPANY });
+            if (domain == null || domain.Statue != DomainStatue.Effective)
+                return HttpNotFound();
             return View(domain);
         }
 
