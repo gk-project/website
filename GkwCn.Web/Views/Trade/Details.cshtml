@@ -70,6 +70,7 @@
         </table>
         <h4 class="page-header">供求详情</h4>
         <div>@Html.Raw(Model.Content)</div>
+        <div class="span12"><small>免责声明：本站部分内容均来自互联网，如不慎侵害了您的相关权益，请留言告知，我们将尽快删除！</small></div>
     </div>
 </div>
 <div class="span3">
@@ -100,3 +101,11 @@
         </div>
     </div>
 </div>
+
+@section scripts{
+    <script type="text/javascript" id="bdshare_js" data="type=slide&amp;img=1&amp;pos=right&amp;uid=6720770" ></script>
+	<script type="text/javascript" id="bdshell_js"></script>
+	<script type="text/javascript">
+	document.getElementById("bdshell_js").src = "http://bdimg.share.baidu.com/static/js/shell_v2.js?cdnversion=" + Math.ceil(new Date()/3600000);
+	</script>
+}

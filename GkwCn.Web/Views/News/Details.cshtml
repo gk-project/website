@@ -22,7 +22,7 @@
         <p class="hide">@Html.Raw(Model.Summary)</p>
         <p>@Html.Raw(Model.Content)</p>
         <p class="hide">@Html.DisplayFor(model=>model.Title)</p>
-        <small>免责声明：本站部分内容均来自互联网，如不慎侵害的您的相关权益，请留言告知，我们将尽快删除！</small>
+        <small>免责声明：本站部分内容均来自互联网，如不慎侵害了您的相关权益，请留言告知，我们将尽快删除！</small>
     </div>
 </div>
 @{Html.RenderAction("GetPartialList", "product", new { view = "GetProductByCId", size = 10 });}
