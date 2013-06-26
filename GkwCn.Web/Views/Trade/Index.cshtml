@@ -23,10 +23,10 @@
         <h5 class="page-header">出售产品 <span class="pull-right"><a href="~/trade/list?type=1&size=50" target="_blank">更多>></a></span></h5>
         @{Html.RenderAction("getpartiallist", "trade", new { type = (int)TradeType.卖, size = 15, israndom = false });}
     </div>
-    <div>
+@*    <div>
         <h5 class="page-header">产品备件 <span class="pull-right"><a href="~/trade/list?type=2&size=50" target="_blank">更多>></a></span></h5>
         @{Html.RenderAction("getpartiallist", "trade", new { type = (int)TradeType.备件, size = 15, israndom = false });}
-    </div>
+    </div>*@
 </div>
 <div class="span4">
     <div class="span4">
