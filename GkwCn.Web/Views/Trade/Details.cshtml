@@ -1,7 +1,7 @@
 ﻿@model Trade
 
 @{
-    ViewBag.Title = Model.Title + " - " + Model.TradeType.ToString();
+    ViewBag.Title = Model.Title + " - " + @Html.DisplayFor(model => model.TradeType);
     ViewBag.Keywords = Model.Keyword;
     ViewBag.Description = Model.Summary;
 }
