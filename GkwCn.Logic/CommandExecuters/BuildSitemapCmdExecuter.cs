@@ -70,6 +70,8 @@ namespace GkwCn.Logic.CommandExecuters
                 totalCount = db.Query<Product>().Where(o => o.Statue == Domains.DomainStatue.Effective).Count();
             else if (cmd.Type == SiteType.COOPERATE)
                 totalCount = db.Query<Cooperate>().Where(o => o.Statue == Domains.DomainStatue.Effective).Count();
+            else if (cmd.Type == SiteType.TRADE)
+                totalCount = db.Query<Trade>().Where(o => o.Statue == Domains.DomainStatue.Effective).Count();
             var index = 0;
             var errorCount = 0;
             do
@@ -85,6 +87,8 @@ namespace GkwCn.Logic.CommandExecuters
                         ids = db.Query<Product>().Where(o => o.Statue == Domains.DomainStatue.Effective).OrderBy(o => o.Id).Skip((Math.Max(0, index - 1)) * size).Take(size).Select(o => o.Id).ToList();
                     else if (cmd.Type == SiteType.COOPERATE)
                         ids = db.Query<Cooperate>().Where(o => o.Statue == Domains.DomainStatue.Effective).OrderBy(o => o.Id).Skip((Math.Max(0, index - 1)) * size).Take(size).Select(o => o.Id).ToList();
+                    else if (cmd.Type == SiteType.TRADE)
+                        ids = db.Query<Trade>().Where(o => o.Statue == Domains.DomainStatue.Effective).OrderBy(o => o.Id).Skip((Math.Max(0, index - 1)) * size).Take(size).Select(o => o.Id).ToList();
                     else
                         ids = new int[] { };
                     var urls = ids.Select(id => string.Format("{0}/{1}/{2}/{3}", domainUrl, cmd.Type.ToString().ToLower(), "details", id));
