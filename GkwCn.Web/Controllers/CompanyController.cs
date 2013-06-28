@@ -2,6 +2,7 @@
 using GkwCn.Framework.Commands.Buses;
 using GkwCn.Framework.Mvc;
 using GkwCn.Models.Commands;
+using GkwCn.Models.Commands.Common;
 using GkwCn.Models.ViewModels;
 using GkwCn.QueryService;
 using GkwCn.Web.Models;
@@ -41,10 +42,11 @@ namespace GkwCn.Web.Controllers
 
         public ActionResult Details(int id)
         {
-            var domain = DefaultCommandBus.Instance.SendCommand<UpdateHitCmd, Company>(new UpdateHitCmd() { Id = id, Type = SiteType.COMPANY });
-            if (domain == null || domain.Statue != DomainStatue.Effective)
+            //var domain = DefaultCommandBus.Instance.SendCommand<UpdateHitCmd, Company>(new UpdateHitCmd() { Id = id, Type = SiteType.COMPANY });
+            var url = DefaultCommandBus.Instance.SendCommand<BuildStaticPageCmd, string>(new BuildStaticPageCmd(HttpContext.Request.Url.Host) { Id = id, Type = SiteType.COMPANY });
+            if (string.IsNullOrEmpty(url))
                 return HttpNotFound();
-            return View(domain);
+            return Redirect(url);
         }
 
         public ActionResult Create()

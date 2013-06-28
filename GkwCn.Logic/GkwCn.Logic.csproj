@@ -43,6 +43,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommandExecuters\BuildSitemapCmdExecuter.cs" />
+    <Compile Include="CommandExecuters\BuildStaticPageCmdExecuter.cs" />
     <Compile Include="CommandExecuters\ChangePasswordCmdExecuter.cs" />
     <Compile Include="CommandExecuters\CreateNewsCmdExecuter.cs" />
     <Compile Include="CommandExecuters\CreateTradeCmdExecuter.cs" />
