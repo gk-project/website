@@ -23,7 +23,7 @@
     <ul>
         @foreach (var item in Model.ListValue)
         {
-            <li><a href="~/trade/details/@item.Id" target="_blank">@item.Title - [@item.Hit] - (@item.CreateTime.ToString("yyyy-MM-dd"))</a></li>
+            <li><a href="~/trade/details/@item.Id" target="_blank">@item.Title - [@item.Hit] - (@item.UpdateTime.ToString("yyyy-MM-dd"))</a></li>
         }
     </ul>
 </div>

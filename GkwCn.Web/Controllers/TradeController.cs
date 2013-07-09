@@ -4,6 +4,7 @@ using GkwCn.Framework.Commands.Buses;
 using GkwCn.Framework.Mvc;
 using GkwCn.Models.Commands;
 using GkwCn.Models.Commands.Business;
+using GkwCn.Models.Commands.Common;
 using GkwCn.Models.ViewaModels;
 using GkwCn.QueryService;
 using GkwCn.Web.Models;
@@ -56,6 +57,22 @@ namespace GkwCn.Web.Controllers
 
         public ActionResult Details(int id)
         {
+            //var cmd = new BuildStaticPageCmd(HttpContext.Request.Url.Host) { Id = id, Type = SiteType.TRADE, BuildType = (BuildType)t };
+            //if (cmd.BuildType != BuildType.NONE)
+            //{
+            //    var url = DefaultCommandBus.Instance.SendCommand<BuildStaticPageCmd, string>(cmd);
+            //    if (string.IsNullOrEmpty(url))
+            //        return HttpNotFound();
+            //    Response.AddHeader("Location", url);
+            //    return new HttpStatusCodeResult(301);
+            //}
+            //else
+            //{
+            //    var domain = DefaultCommandBus.Instance.SendCommand<UpdateHitCmd, Trade>(new UpdateHitCmd() { Id = id, Type = SiteType.TRADE });
+            //    if (domain == null || domain.Statue != DomainStatue.Effective)
+            //        return HttpNotFound();
+            //    return View(domain);
+            //}
             var domain = DefaultCommandBus.Instance.SendCommand<UpdateHitCmd, Trade>(new UpdateHitCmd() { Id = id, Type = SiteType.TRADE });
             if (domain == null || domain.Statue != DomainStatue.Effective)
                 return HttpNotFound();
@@ -84,7 +101,7 @@ namespace GkwCn.Web.Controllers
                 page.Index = random.Next(0, 100);
             IEnumerable<Trade> trades = null;
             if (type.IsNull() || !type.HasValue || type.Value < 0)
-                trades = query.GetList<Trade>(p => p.Statue == DomainStatue.Effective , ps => ps.OrderByDescending(p => p.UpdateTime), page);
+                trades = query.GetList<Trade>(p => p.Statue == DomainStatue.Effective, ps => ps.OrderByDescending(p => p.UpdateTime), page);
             else
                 trades = query.GetList<Trade>(p => p.Statue == DomainStatue.Effective && p.TradeType == (TradeType)type.Value, ps => ps.OrderByDescending(p => p.UpdateTime), page);
             return PartialView(view ?? "GetPartialList", new TradeListViewModel() { Type = type ?? -1, ListValue = trades, Page = page });

@@ -1,0 +1,8 @@
+﻿@model GkwCn.Models.ViewaModels.TradeListViewModel
+
+<ul>
+    @foreach (var item in Model.ListValue)
+    {
+        <li><a href="/trade/details/@item.Id" target="_blank">@item.Title.ASubString(50) - (@item.UpdateTime.ToString("MM-dd"))</a></li>
+    }
+</ul>

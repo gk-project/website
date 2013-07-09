@@ -17,14 +17,14 @@ namespace GkwCn.Logic.CommandExecuters
     {
         private const string domainUrl = "http://www.gkwcn.com";
         private const string defaultFileName = "sitemap";
-        private const int MAXCOUNT = 40000;
+        private const int MAXCOUNT = 50000;
         private const int size = 5000;
         private static string _basePath = AppDomain.CurrentDomain.BaseDirectory;
         private int buildCount = 0;
         private static object LockType = new object();
         public int GetLastFileIndex(SiteType type)
         {
-            var findex = Directory.GetFiles(_basePath).Select(o => o.Replace(_basePath, "").Replace(type.ToString().ToLower(), "").Replace(defaultFileName, "").ToInt()).Max();
+            var findex = Directory.GetFiles(_basePath).Select(o => o.Replace(_basePath, "").Replace(type.ToString().ToLower(), "").Replace(".txt", "").Replace("-", "").Replace(defaultFileName, "").ToInt()).Max();
             if (buildCount + size >= MAXCOUNT)
             {
                 buildCount = 0;

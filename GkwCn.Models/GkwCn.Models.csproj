@@ -66,6 +66,7 @@
     <Compile Include="Domain\BaseData\ProvinceCity.cs" />
     <Compile Include="Domain\BaseData\Region.cs" />
     <Compile Include="Domain\BaseDomainObject.cs" />
+    <Compile Include="Domain\BuildStaticPage.cs" />
     <Compile Include="Domain\Business\Cooperate.cs" />
     <Compile Include="Domain\Business\Sales.cs" />
     <Compile Include="Domain\Business\SalesInfo.cs" />

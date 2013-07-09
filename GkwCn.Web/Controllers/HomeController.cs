@@ -14,6 +14,7 @@ namespace GkwCn.Web.Controllers
         //
         // GET: /Home/
 
+        [OutputCache(Duration = 72000)]
         public ActionResult Index()
         {
             return View();

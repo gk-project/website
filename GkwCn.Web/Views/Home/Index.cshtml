@@ -120,4 +120,13 @@
         </div>
     </div>
 </div>
-
+<div class="row">
+    <div class="span6 hotcompany">
+        <h5 class="page-header">商品求购 <span class="pull-right"><a href="~/trades/list?type=0" target="_blank">更多>></a></span></h5>
+        @Html.Action("GetPartialList", "trade", new { view = "IndexPartialList", type = 0, size = 15 })
+    </div>
+    <div class="span6 hotcompany">
+        <h5 class="page-header">商品出售 <span class="pull-right"><a href="~/trades/list?type=1" target="_blank">更多>></a></span></h5>
+        @Html.Action("GetPartialList", "trade", new { view = "IndexPartialList", type = 1, size = 15 })
+    </div>
+</div>

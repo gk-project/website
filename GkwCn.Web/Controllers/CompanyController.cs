@@ -3,12 +3,14 @@ using GkwCn.Framework.Commands.Buses;
 using GkwCn.Framework.Mvc;
 using GkwCn.Models.Commands;
 using GkwCn.Models.Commands.Common;
+using GkwCn.Models.Domain;
 using GkwCn.Models.ViewModels;
 using GkwCn.QueryService;
 using GkwCn.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -24,7 +26,7 @@ namespace GkwCn.Web.Controllers
             query.Dispose();
         }
 
-        [OutputCache(Duration = 300, VaryByParam = "index;size;")]
+        [OutputCache(Duration = 72000, VaryByParam = "index;size;")]
         public ActionResult Index(Pager page)
         {
             var companys = query.GetList<Company>(o => o.Statue == DomainStatue.Effective && !string.IsNullOrEmpty(o.Logo), cs => cs.OrderByDescending(c => c.Hit), page);
@@ -42,11 +44,26 @@ namespace GkwCn.Web.Controllers
 
         public ActionResult Details(int id)
         {
-            //var domain = DefaultCommandBus.Instance.SendCommand<UpdateHitCmd, Company>(new UpdateHitCmd() { Id = id, Type = SiteType.COMPANY });
-            var url = DefaultCommandBus.Instance.SendCommand<BuildStaticPageCmd, string>(new BuildStaticPageCmd(HttpContext.Request.Url.Host) { Id = id, Type = SiteType.COMPANY });
-            if (string.IsNullOrEmpty(url))
+            //var cmd = new BuildStaticPageCmd(HttpContext.Request.Url.Host) { Id = id, Type = SiteType.COMPANY, BuildType = (BuildType)t };
+            //if (cmd.BuildType != BuildType.NONE)
+            //{
+            //    var url = DefaultCommandBus.Instance.SendCommand<BuildStaticPageCmd, string>(cmd);
+            //    if (string.IsNullOrEmpty(url))
+            //        return HttpNotFound();
+            //    Response.AddHeader("Location", url);
+            //    return new HttpStatusCodeResult(301);
+            //}
+            //else
+            //{
+            //    var domain = DefaultCommandBus.Instance.SendCommand<UpdateHitCmd, Company>(new UpdateHitCmd() { Id = id, Type = SiteType.COMPANY });
+            //    if (domain == null || domain.Statue != DomainStatue.Effective)
+            //        return HttpNotFound();
+            //    return View(domain);
+            //}
+            var domain = DefaultCommandBus.Instance.SendCommand<UpdateHitCmd, Company>(new UpdateHitCmd() { Id = id, Type = SiteType.COMPANY });
+            if (domain == null || domain.Statue != DomainStatue.Effective)
                 return HttpNotFound();
-            return Redirect(url);
+            return View(domain);
         }
 
         public ActionResult Create()

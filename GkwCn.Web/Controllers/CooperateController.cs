@@ -10,6 +10,7 @@ using System.Linq;
 using System.Collections.Generic;
 using GkwCn.Framework.Commands.Buses;
 using GkwCn.Models.Commands;
+using GkwCn.Models.Commands.Common;
 
 namespace GkwCn.Web.Controllers
 {
@@ -25,21 +26,21 @@ namespace GkwCn.Web.Controllers
         {
             return View();
         }
-        
+
         [OutputCache(Duration = 300, VaryByParam = "type;index;size;")]
         public ActionResult List(int? type, Pager page)
         {
             IEnumerable<Cooperate> cooperates;
             if (type == null || !type.HasValue || type.Value < 0)
-                cooperates = query.GetList<Cooperate>(o => o.Statue == DomainStatue.Effective , os => os.OrderByDescending(o => o.CreateTime), page);
+                cooperates = query.GetList<Cooperate>(o => o.Statue == DomainStatue.Effective, os => os.OrderByDescending(o => o.CreateTime), page);
             else
-                cooperates = query.GetList<Cooperate>(o => o.Statue == DomainStatue.Effective && (int)o.Type == type.Value , os => os.OrderByDescending(o => o.CreateTime), page);
+                cooperates = query.GetList<Cooperate>(o => o.Statue == DomainStatue.Effective && (int)o.Type == type.Value, os => os.OrderByDescending(o => o.CreateTime), page);
 
             return View(new CooperateListViewModel() { ListValue = cooperates, Page = page });
         }
 
         //[OutputCache(Duration = 300, VaryByParam = "type;index;size;view;israndom")]
-        public ActionResult GetPartialList(int? type,string view, Pager page, bool? isRandom = false)
+        public ActionResult GetPartialList(int? type, string view, Pager page, bool? isRandom = false)
         {
             IEnumerable<Cooperate> cooperates;
             if (isRandom.Value)
@@ -54,6 +55,22 @@ namespace GkwCn.Web.Controllers
 
         public ActionResult Details(int id)
         {
+            //var cmd = new BuildStaticPageCmd(HttpContext.Request.Url.Host) { Id = id, Type = SiteType.COOPERATE, BuildType = (BuildType)t };
+            //if (cmd.BuildType != BuildType.NONE)
+            //{
+            //    var url = DefaultCommandBus.Instance.SendCommand<BuildStaticPageCmd, string>(cmd);
+            //    if (string.IsNullOrEmpty(url))
+            //        return HttpNotFound();
+            //    Response.AddHeader("Location", url);
+            //    return new HttpStatusCodeResult(301);
+            //}
+            //else
+            //{
+            //    var domain = DefaultCommandBus.Instance.SendCommand<UpdateHitCmd, Cooperate>(new UpdateHitCmd() { Id = id, Type = SiteType.COOPERATE });
+            //    if (domain == null || domain.Statue != DomainStatue.Effective)
+            //        return HttpNotFound();
+            //    return View(domain);
+            //}
             var domain = DefaultCommandBus.Instance.SendCommand<UpdateHitCmd, Cooperate>(new UpdateHitCmd() { Id = id, Type = SiteType.COOPERATE });
             if (domain == null || domain.Statue != DomainStatue.Effective)
                 return HttpNotFound();

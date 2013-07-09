@@ -3,6 +3,7 @@ using GkwCn.Domains.Product;
 using GkwCn.Framework.Commands.Buses;
 using GkwCn.Framework.Mvc;
 using GkwCn.Models.Commands;
+using GkwCn.Models.Commands.Common;
 using GkwCn.Models.ViewModels;
 using GkwCn.QueryService;
 using GkwCn.Web.Models;
@@ -68,6 +69,22 @@ namespace GkwCn.Web.Controllers
 
         public ActionResult Details(int id)
         {
+            //var cmd = new BuildStaticPageCmd(HttpContext.Request.Url.Host) { Id = id, Type = SiteType.PRODUCT, BuildType = (BuildType)t };
+            //if (cmd.BuildType != BuildType.NONE)
+            //{
+            //    var url = DefaultCommandBus.Instance.SendCommand<BuildStaticPageCmd, string>(cmd);
+            //    if (string.IsNullOrEmpty(url))
+            //        return HttpNotFound();
+            //    Response.AddHeader("Location", url);
+            //    return new HttpStatusCodeResult(301);
+            //}
+            //else
+            //{
+            //    var domain = DefaultCommandBus.Instance.SendCommand<UpdateHitCmd, Product>(new UpdateHitCmd() { Id = id, Type = SiteType.PRODUCT });
+            //    if (domain == null || domain.Statue != DomainStatue.Effective)
+            //        return HttpNotFound();
+            //    return View(domain);
+            //}
             var domain = DefaultCommandBus.Instance.SendCommand<UpdateHitCmd, Product>(new UpdateHitCmd() { Id = id, Type = SiteType.PRODUCT });
             if (domain == null || domain.Statue != DomainStatue.Effective)
                 return HttpNotFound();

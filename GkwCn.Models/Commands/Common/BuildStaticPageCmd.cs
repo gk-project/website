@@ -7,7 +7,12 @@ using System.Threading.Tasks;
 
 namespace GkwCn.Models.Commands.Common
 {
-
+    public enum BuildType
+    {
+        NONE,
+        CREATE,
+        REPLACE
+    }
     public class BuildStaticPageCmd : ICommand
     {
         public BuildStaticPageCmd(string domain)
@@ -20,5 +25,7 @@ namespace GkwCn.Models.Commands.Common
         public int Id { get; set; }
 
         public SiteType Type { get; set; }
+
+        public BuildType BuildType { get; set; }
     }
 }

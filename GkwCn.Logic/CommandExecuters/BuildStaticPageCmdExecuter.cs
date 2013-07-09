@@ -1,6 +1,7 @@
 ﻿using GkwCn.Framework.Commands;
 using GkwCn.Models.Commands;
 using GkwCn.Models.Commands.Common;
+using GkwCn.Models.Domain;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -16,43 +17,48 @@ namespace GkwCn.Logic.CommandExecuters
     {
         public override object Execute(BuildStaticPageCmd cmd)
         {
-            if (IsExistDire(cmd.Type) && BuildFile(cmd))
+            var domain = new BuildStaticPage() { Domain = cmd.Domain, Id = cmd.Id, Type = cmd.Type, BuildType = cmd.BuildType };
+            if (domain.BuildType == BuildType.REPLACE || domain.BuildType==BuildType.CREATE && !domain.IsExistStaticFile())
             {
-                return GetNewUrl(cmd);
+                if (domain.IsExistDirectory() && BuildFile(domain))
+                {
+                    return domain.GetNewUrl();
+                }
+                else
+                {
+                    return "";
+                }
             }
             else
             {
-                return "";
+                return domain.GetNewUrl();
             }
         }
 
-        private bool BuildFile(BuildStaticPageCmd cmd)
+        private bool BuildFile(BuildStaticPage domain)
         {
             var isSucc = false;
-            var url = string.Format("{0}/{1}/details/{2}", cmd.Domain, cmd.Type.ToString(), cmd.Id);
-            var request = (HttpWebRequest)WebRequest.Create(url);
+            var url = string.Format("http://{0}/{1}/details/{2}?t={3}", domain.Domain, domain.Type.ToString(), domain.Id, 0);
             var bytes = new byte[0];
             var encoding = string.Empty;
             try
             {
+                var request = (HttpWebRequest)HttpWebRequest.Create(url);
+                request.Method = "GET";
                 using (var response = (HttpWebResponse)request.GetResponse())
                 {
-                    bytes = new byte[response.ContentLength];
-                    using (var stream = response.GetResponseStream())
+                    encoding = response.ContentEncoding;
+                    if (encoding.IsNullOrEmpty())
+                        encoding = "utf-8";
+                    using (var stream =new StreamReader(response.GetResponseStream(),Encoding.GetEncoding(encoding)))
                     {
-                        stream.Read(bytes, 0, (int)response.ContentLength);
+                        if (response.StatusCode == HttpStatusCode.OK && response.ContentLength > 0)
+                        {
+                            var html = stream.ReadToEnd();
+                            File.WriteAllText(domain.GetFilePath(), html);
+                            isSucc = true;
+                        }
                     }
-                    if (response.StatusCode == HttpStatusCode.OK && response.ContentLength > 0)
-                    {
-                        isSucc = true;
-                        encoding = response.ContentEncoding;
-                    }
-                }
-                if (isSucc)
-                {
-                    var html = Encoding.GetEncoding(encoding).GetString(bytes);
-                    File.WriteAllText(GetFilePath(cmd), html);
-                    isSucc = true;
                 }
             }
             catch
@@ -60,31 +66,6 @@ namespace GkwCn.Logic.CommandExecuters
                 isSucc = false;
             }
             return isSucc;
-        }
-
-        private string GetNewUrl(BuildStaticPageCmd cmd)
-        {
-            return string.Format("{0}/{1}/{2}.html", cmd.Domain, cmd.Type.ToString(), cmd.Id).ToLower();
-        }
-
-        private bool IsExistStaticFile(BuildStaticPageCmd cmd)
-        {
-            return File.Exists(GetFilePath(cmd));
-        }
-
-        private string GetFilePath(BuildStaticPageCmd cmd)
-        {
-            return Path.Combine(AppDomain.CurrentDomain.BaseDirectory, string.Format("{0}/{1}.html", cmd.Type.ToString(), cmd.Id));
-        }
-
-        private bool IsExistDire(SiteType type)
-        {
-            var directory = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, type.ToString());
-            if (!Directory.Exists(directory))
-            {
-                Directory.CreateDirectory(directory);
-            }
-            return true;
         }
     }
 }
