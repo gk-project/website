@@ -30,6 +30,17 @@
         <p class="offset1">@Html.Raw(Model.Content)</p>
         <p class="hide">@Html.DisplayFor(model => model.Name)</p>
         <small>免责声明：本站部分内容均来自互联网，如不慎侵害了您的相关权益，请留言告知，我们将尽快删除！</small>
+        <div class="span9">
+            <hr />
+            <!-- UJian Button BEGIN -->
+            <div class="ujian-hook"></div>
+            <script type="text/javascript">var ujian_config = { num: 10, showType: 3, target: 1, defaultPic: 'http://www.gkwcn.com/content/images/logo-red.png', bgColor: '#' };</script>
+            <script type="text/javascript" src="http://v1.ujian.cc/code/ujian.js?uid=1812570"></script>
+            <a href="http://www.ujian.cc" style="border: 0;">
+                <img src="http://img.ujian.cc/pixel.png" alt="友荐云推荐" style="border: 0; padding: 0; margin: 0;" />
+            </a>
+            <!-- UJian Button END -->
+        </div>
     </div>
     <div class="span3">
         @if (!Model.Company.IsNull())
@@ -47,6 +58,12 @@
             Html.RenderAction("getproductbycid", "product", new { companyid = Model.CompanyId, size = 6 });
         }
     </div>
+</div>
+<div class="span12">
+    <!-- UY BEGIN -->
+    <div id="uyan_frame"></div>
+    <script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=1812570"></script>
+    <!-- UY END -->
 </div>
 
 @section scripts{
