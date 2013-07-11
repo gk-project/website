@@ -309,6 +309,7 @@
     <Content Include="Views\Trade\Index.cshtml" />
     <Content Include="Views\Trade\GetPartialList.cshtml" />
     <Content Include="Views\Trade\List.cshtml" />
+    <Content Include="Views\Trade\IndexPartialList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
